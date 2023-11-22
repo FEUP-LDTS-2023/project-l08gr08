@@ -12,6 +12,6 @@ public class ItemC extends Element{
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.setBackgroundColor(TextColor.Factory.fromString("#32CD32"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "2");
+        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "3");
     }
 }

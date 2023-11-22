@@ -15,5 +15,3 @@ public class ItemA extends Element{
         graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "1");
     }
 }
-
-
