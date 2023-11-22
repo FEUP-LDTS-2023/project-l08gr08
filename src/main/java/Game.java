@@ -8,12 +8,11 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 
 public class Game {
-    private int stage = 0; // not used for now // will later determine which // level // menu // wtv // the user is in //
-    private Level level;
+    private int stage = 1;
+    private Level level_A;
     private Screen screen;
 
     public Game() throws IOException {
-
         TerminalSize terminalSize = new TerminalSize(80, 40);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         Terminal terminal = terminalFactory.createTerminal();
@@ -28,9 +27,10 @@ public class Game {
     private void draw() throws IOException {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
-        level.draw(graphics);
+        level_A.draw(graphics);
         screen.refresh();
     }
+
     public void run() throws IOException {
         while (true) {
             draw();
