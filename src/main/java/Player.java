@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Player extends Element {
-    private int stage; // Guarda o "Estágio // Nível do Herói // 1 -> 2 -> 3 //
+    private int stage = 1; // Guarda o "Estágio // Nível do Herói // 1 -> 2 -> 3 //
     private boolean direction; // true -> direita // false -> esquerda //
     private boolean power = false; // true -> pode usar poder // falso -> não pode
     private boolean powerActive = false; // true -> tem o poder ativado // false -> não tem
@@ -33,10 +33,23 @@ public class Player extends Element {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#01016f"));
-        graphics.enableModifiers(SGR.BOLD);
-
         if(direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), ">");
         if(!direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "<");
+
+        if (!powerActive) graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
+        if(powerActive) graphics.setForegroundColor(TextColor.Factory.fromString("#ff0000"));
+
+        if(stage == 1){
+            graphics.setBackgroundColor(TextColor.Factory.fromString("ffffff"));
+            graphics.enableModifiers(SGR.BOLD);
+        }
+        if(stage == 2){
+            graphics.setBackgroundColor(TextColor.Factory.fromString("add8e6"));
+            graphics.enableModifiers(SGR.BOLD);
+        }
+        if(stage == 3){
+            graphics.setBackgroundColor(TextColor.Factory.fromString("000080"));
+            graphics.enableModifiers(SGR.BOLD);
+        }
     }
 }
