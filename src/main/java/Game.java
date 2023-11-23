@@ -5,11 +5,12 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+
 import java.io.IOException;
 
 public class Game {
     private int stage = 1;
-    private Level level_A;
+    private Level level = new Level(1);
     private Screen screen;
 
     public Game() throws IOException {
@@ -27,13 +28,11 @@ public class Game {
     private void draw() throws IOException {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
-        level_A.draw(graphics);
+        level.draw(graphics);
         screen.refresh();
     }
 
     public void run() throws IOException {
-        while (true) {
-            draw();
-        }
+        while (true) draw();
     }
 }
