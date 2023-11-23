@@ -14,39 +14,48 @@ public class Player extends Element {
 
     // Getters and Setters for every attribute //
 
-    public Player(int x, int y){
-        super(x,y);
+    public Player(int x, int y) {
+        super(x, y);
     }
+
     public int getStage() {
         return stage;
     }
+
     public void nextStage() {
-        if(stage == 3){
+        if (stage == 3) {
             stage = 1;
-        }
-        else stage++;
+        } else stage++;
     }
+
     public boolean getDirection() {
         return direction;
     }
+
     public void switchDirection() {
         direction = !direction;
     }
-    public boolean getPower(){
+
+    public boolean getPower() {
         return power;
     }
-    public void Power(boolean a){
+
+    public void Power(boolean a) {
         this.power = a;
     }
-    public boolean getPowerActive(boolean a){
+
+    public boolean getPowerActive(boolean a) {
         return powerActive;
     }
-    public void setPowerActive(boolean a){
+
+    public void setPowerActive(boolean a) {
         this.powerActive = a;
     }
-    public boolean getHoldingBlock(){
+
+    public boolean getHoldingBlock() {
         return holdingBlock;
     }
+
     public void setHoldingBlock(boolean h) {
         this.holdingBlock = h;
     }
@@ -55,23 +64,25 @@ public class Player extends Element {
 
     @Override
     public void draw(TextGraphics graphics) {
-        if(direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), ">");
-        if(!direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "<");
+        if (direction) {
+            graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), ">");
+            if (!direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "<");
 
-        if (!powerActive) graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-        if(powerActive) graphics.setForegroundColor(TextColor.Factory.fromString("#ff0000"));
+            if (!powerActive) graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
+            if (powerActive) graphics.setForegroundColor(TextColor.Factory.fromString("#ff0000"));
 
-        if(stage == 1){
-            graphics.setBackgroundColor(TextColor.Factory.fromString("#ffffff"));
-            graphics.enableModifiers(SGR.BOLD);
-        }
-        if(stage == 2){
-            graphics.setBackgroundColor(TextColor.Factory.fromString("#add8e6"));
-            graphics.enableModifiers(SGR.BOLD);
-        }
-        if(stage == 3){
-            graphics.setBackgroundColor(TextColor.Factory.fromString("#000080"));
-            graphics.enableModifiers(SGR.BOLD);
+            if (stage == 1) {
+                graphics.setBackgroundColor(TextColor.Factory.fromString("#ffffff"));
+                graphics.enableModifiers(SGR.BOLD);
+            }
+            if (stage == 2) {
+                graphics.setBackgroundColor(TextColor.Factory.fromString("#add8e6"));
+                graphics.enableModifiers(SGR.BOLD);
+            }
+            if (stage == 3) {
+                graphics.setBackgroundColor(TextColor.Factory.fromString("#000080"));
+                graphics.enableModifiers(SGR.BOLD);
+            }
         }
     }
 }

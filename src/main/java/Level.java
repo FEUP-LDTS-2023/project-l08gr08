@@ -19,12 +19,14 @@ public class Level {
     }
     private List<Wall> walls = new ArrayList<>();
     private List<Block> blocks = new ArrayList<>();
-    private Player player;
+    private List<Item> items = new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
+    private Player player = new Player(0,0);
 
     public void readFile() {
         String file = "";
         if(this.inp == 1){
-            file = "../NIVEL1.txt"; // !!! //
+            file = "src/main/java/NIVEL1.txt"; // !!! //
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -57,12 +59,22 @@ public class Level {
                             break;
                         case '1':
                             Item itemA = new Item(coordX,coordY);
+                            items.add(itemA);
+                            break;
                         case '2':
                             Item itemB = new Item(coordX,coordY);
                             itemB.switchId(2);
+                            items.add(itemB);
+                            break;
                         case '3':
                             Item itemC = new Item(coordX,coordY);
                             itemC.switchId(3);
+                            items.add(itemC);
+                            break;
+                        case 'E':
+                            Enemy enemy = new Enemy(coordX,coordY);
+                            enemies.add(enemy);
+                            break;
                     }
                     coordX++;
                 }
@@ -73,11 +85,13 @@ public class Level {
         }
     }
 
-    public void draw(TextGraphics graphics) throws IOException {
+    public void draw(TextGraphics graphics) /*throws IOException*/ {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#12c0ff")); // later change to an image //
         graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height),' ');
         player.draw(graphics);
         for (Wall wall : walls) wall.draw(graphics);
         for (Block b : blocks) b.draw(graphics);
+        for (Item i : items) i.draw(graphics);
+        for (Enemy e : enemies) e.draw(graphics);
     }
 }
