@@ -23,6 +23,8 @@ public class Game {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
+
+        level.readFile();
     }
 
     private void draw() throws IOException {

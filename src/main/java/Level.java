@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
@@ -9,13 +11,15 @@ import java.util.List;
 
 public class Level {
     private final int inp;
+    private int width = 0;
+    private int height = 0;
 
     public Level (int inp){
         this.inp = inp;
     }
     private List<Wall> walls = new ArrayList<>();
     private List<Block> blocks = new ArrayList<>();
-    private Player player = new Player(0,0);
+    private Player player;
 
     public void readFile() {
         String file = "";
@@ -71,6 +75,7 @@ public class Level {
 
     public void draw(TextGraphics graphics) throws IOException {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#12c0ff")); // later change to an image //
+        graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height),' ');
         player.draw(graphics);
         for (Wall wall : walls) wall.draw(graphics);
         for (Block b : blocks) b.draw(graphics);
