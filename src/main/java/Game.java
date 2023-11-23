@@ -6,8 +6,10 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Game {
@@ -18,7 +20,16 @@ public class Game {
     public Game() throws IOException {
         TerminalSize terminalSize = new TerminalSize(200, 50);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Terminal terminal = terminalFactory.createTerminal();
+        Font myFont = new Font("Monospaced", Font.PLAIN, 50); // Change the number 20 to your desired font size
+        AWTTerminalFontConfiguration myFontConfiguration = AWTTerminalFontConfiguration.newInstance(myFont);
+        // Use myFontConfiguration when creating your terminal
+        // Create a default terminal (will use Swing on desktop)
+        // Use myFontConfiguration when creating your terminal
+        DefaultTerminalFactory dtf = new DefaultTerminalFactory();
+        dtf.setForceAWTOverSwing(true);
+        dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
+        Terminal terminal = dtf.createTerminal();
+
 
         screen = new TerminalScreen(terminal);
 
