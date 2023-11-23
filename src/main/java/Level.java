@@ -2,6 +2,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-    private final int inp;
+    private int inp;
     private int width = 0;
     private int height = 0;
 
@@ -31,8 +32,11 @@ public class Level {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
-            int coordX = 0;
+            int coordX;
             int coordY = 0;
+
+            int centerX = 32;
+            int centerY = 32;
 
             while ((line = reader.readLine()) != null && coordY < 13) {
                 coordX = 0;
@@ -84,14 +88,17 @@ public class Level {
             e.printStackTrace();
         }
     }
-
     public void draw(TextGraphics graphics) /*throws IOException*/ {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#12c0ff")); // later change to an image //
-        graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height),' ');
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#8cd3ff"));
+        graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(43, 13),' ');
         player.draw(graphics);
         for (Wall wall : walls) wall.draw(graphics);
         for (Block b : blocks) b.draw(graphics);
         for (Item i : items) i.draw(graphics);
         for (Enemy e : enemies) e.draw(graphics);
+    }
+
+    public void processKey(KeyStroke key) {
+        System.out.println(key);
     }
 }
