@@ -7,16 +7,18 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-
-
 import java.awt.*;
 import java.io.IOException;
 
 public class Game {
-    // private int stage = 0; // STAGE 0 SHOULD OPEN MENU // TODO LATER // FOR NOW KEEP STAGE AT 1 -> LEVEL
+ // private int stage = 0; // STAGE 0 SHOULD OPEN MENU // TODO LATER // FOR NOW KEEP STAGE AT 1 -> LEVEL
     private int stage = 1;
     private Level level = new Level(1);
     private Screen screen;
+
+    public void setStage(int s){
+        this.stage = s;
+    }
 
     public Game() throws IOException {
         TerminalSize terminalSize = new TerminalSize(200, 10);
@@ -44,12 +46,17 @@ public class Game {
             level.processKey(key);
             Player player = level.getPlayer();
 
+            if(stage == 0){
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == '1') {
+                    setStage(1);
+                }
+            }
+
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                 screen.close();
                 break;
             }
             else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'r') {
-                // restart
             }
             else if (key.getKeyType() == KeyType.EOF) {
                 break;
@@ -69,12 +76,11 @@ public class Game {
             }
         }
     }
-
     private void draw() throws IOException {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
         // if (stage == 0) menu.draw(graphics) // TODO -> DRAW MENU LATER
-        if (stage == 1) { level.draw(graphics); }
+        if (stage == 1) {level.draw(graphics);}
         screen.refresh();
     }
 }

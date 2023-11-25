@@ -21,7 +21,6 @@ public class Level {
     public Level (int inp){
         this.inp = inp;
     }
-
     private List<Wall> walls = new ArrayList<>();
     private List<Block> blocks = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
@@ -61,9 +60,10 @@ public class Level {
         } else if (this.inp == 5) {
             file = "src/main/java/NIVEL5.txt";
         }
-
+        int temp = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
+            temp = line.length();
             int coordX;
             int coordY = 0;
 
@@ -73,36 +73,36 @@ public class Level {
                 while (coordX < line.length()) {
                     switch (line.charAt(coordX)) {
                         case 'B':
-                            blocks.add(new Block(centerX + coordX, centerY + coordY));
+                            blocks.add(new Block(coordX,coordY));
                             break;
                         case 'M':
-                            Block mBlock = new Block(centerX + coordX, centerY + coordY);
+                            Block mBlock = new Block(coordX, coordY);
                             mBlock.makeMovable();
                             blocks.add(mBlock);
                             break;
                         case '>':
-                            player = new Player(centerX + coordX, centerY + coordY);
+                            player = new Player(coordX, coordY);
                             break;
                         case '<':
-                            player = new Player(centerX + coordX, centerY + coordY);
+                            player = new Player(coordX, coordY);
                             player.switchDirection();
                             break;
                         case '1':
-                            Item itemA = new Item(centerX + coordX, centerY + coordY);
+                            Item itemA = new Item(coordX, coordY);
                             items.add(itemA);
                             break;
                         case '2':
-                            Item itemB = new Item(centerX + coordX, centerY + coordY);
+                            Item itemB = new Item(coordX, coordY);
                             itemB.switchId(2);
                             items.add(itemB);
                             break;
                         case '3':
-                            Item itemC = new Item(centerX + coordX, centerY + coordY);
+                            Item itemC = new Item(coordX, coordY);
                             itemC.switchId(3);
                             items.add(itemC);
                             break;
                         case 'E':
-                            Enemy enemy = new Enemy(centerX + coordX, centerY + coordY);
+                            Enemy enemy = new Enemy(coordX, coordY);
                             enemies.add(enemy);
                             break;
                     }
@@ -113,11 +113,11 @@ public class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         for (Block b : blocks) { b.setPlayerX(player.getPosition().getX());}
         for (Item i : items) {i.setPlayerX(player.getPosition().getX());}
         for (Enemy e : enemies){e.setPlayerX(player.getPosition().getX());}
-    }
+    } // DONE
+
     public void draw(TextGraphics graphics) {
         // TEXT APPEARING ON TOP OF LEVEL
         graphics.putString(new TerminalPosition(centerX + 0, 1), "B");
@@ -153,5 +153,15 @@ public class Level {
     }
     public void processKey(KeyStroke key) {
         System.out.println(key);
+        int x = player.getPosition().getX();
+        for (Block b : blocks) {
+            b.setPlayerX(x);
+        }
+        for (Item i : items) {
+            i.setPlayerX(x);
+        }
+        for (Enemy e : enemies){
+            e.setPlayerX(x);
+        }
     }
 }

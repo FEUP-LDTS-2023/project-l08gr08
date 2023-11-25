@@ -73,7 +73,7 @@ public class Player extends Element {
             graphics.setBackgroundColor(TextColor.Factory.fromString("#000080"));
             graphics.enableModifiers(SGR.BOLD);
         }
-        if (direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), ">");
-        if (!direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "<");
+        if (direction) graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), ">");
+        if (!direction) graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "<");
     }
 }
