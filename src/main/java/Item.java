@@ -11,6 +11,12 @@ public class Item extends Element{
     public void switchId(int a){
         this.id = a;
     }
+
+    private int playerX = 0;
+    public void setPlayerX(int a){
+        this.playerX = a;
+    }
+
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
