@@ -13,53 +13,68 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Game {
+    // private int stage = 0; // STAGE 0 SHOULD OPEN MENU // TODO LATER // FOR NOW KEEP STAGE AT 1 -> LEVEL
     private int stage = 1;
     private Level level = new Level(1);
     private Screen screen;
 
     public Game() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(200, 50);
+        TerminalSize terminalSize = new TerminalSize(200, 10);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Font myFont = new Font("Monospaced", Font.PLAIN, 50); // Change the number 20 to your desired font size
+        Font myFont = new Font("Monospaced", Font.PLAIN, 45);
         AWTTerminalFontConfiguration myFontConfiguration = AWTTerminalFontConfiguration.newInstance(myFont);
-        // Use myFontConfiguration when creating your terminal
-        // Create a default terminal (will use Swing on desktop)
-        // Use myFontConfiguration when creating your terminal
         DefaultTerminalFactory dtf = new DefaultTerminalFactory();
         dtf.setForceAWTOverSwing(true);
         dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
         Terminal terminal = dtf.createTerminal();
 
-
         screen = new TerminalScreen(terminal);
-
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
 
+        level.createWalls();
         level.readFile();
+    }
+
+    public void run() throws IOException {
+        while (true) {
+            draw();
+            KeyStroke key = screen.readInput();
+            level.processKey(key);
+            Player player = level.getPlayer();
+
+            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+                screen.close();
+                break;
+            }
+            else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'r') {
+                // restart
+            }
+            else if (key.getKeyType() == KeyType.EOF) {
+                break;
+            }
+            // !!! EDITAR !!!  ///
+            else if (key.getKeyType() == KeyType.ArrowRight && player.getDirection()){
+                level.movePlayer(player.moveRight());
+            }
+            else if (key.getKeyType() == KeyType.ArrowRight && !player.getDirection()){
+                level.getPlayer().switchDirection();
+            }
+            else if (key.getKeyType() == KeyType.ArrowLeft && player.getDirection()){
+                level.getPlayer().switchDirection();
+            }
+            else if (key.getKeyType() == KeyType.ArrowLeft && !player.getDirection()){
+                level.movePlayer(player.moveLeft());
+            }
+        }
     }
 
     private void draw() throws IOException {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
-        level.draw(graphics);
+        // if (stage == 0) menu.draw(graphics) // TODO -> DRAW MENU LATER
+        if (stage == 1) { level.draw(graphics); }
         screen.refresh();
-    }
-
-    public void run() throws IOException {
-        while (true){
-            draw();
-            KeyStroke key = screen.readInput();
-            level.processKey(key);
-
-        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
-            screen.close();
-            break;
-        }
-        else if (key.getKeyType() == KeyType.EOF) {
-                break;
-            }
-        }
     }
 }

@@ -48,6 +48,13 @@ public class Player extends Element {
         this.holdingBlock = h;
     }
 
+    public Position moveRight() {
+        return new Position(getPosition().getX() + 1, getPosition().getY());
+    }
+    public Position moveLeft() {
+        return new Position(getPosition().getX() - 1, getPosition().getY());
+    }
+
     // Draw method defined //
     @Override
     public void draw(TextGraphics graphics) {
@@ -65,7 +72,6 @@ public class Player extends Element {
         else {
             graphics.setBackgroundColor(TextColor.Factory.fromString("#000080"));
             graphics.enableModifiers(SGR.BOLD);
-
         }
         if (direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), ">");
         if (!direction) graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "<");
