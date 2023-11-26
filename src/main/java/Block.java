@@ -7,6 +7,9 @@ public class Block extends Element {
         super(x, y);
     }
     private boolean movable = false;
+    public boolean isMovable() {
+        return movable;
+    }
     public void makeMovable() {
         this.movable = true;
     }
@@ -16,7 +19,7 @@ public class Block extends Element {
         int x = getPosition().getX();
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
-        if (movable) {
+        if (isMovable()) {
             graphics.setBackgroundColor(TextColor.Factory.fromString("#f0ff4f"));
             graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "M");
         }
