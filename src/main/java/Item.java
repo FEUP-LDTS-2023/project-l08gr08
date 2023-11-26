@@ -11,7 +11,9 @@ public class Item extends Element{
     public void switchId(int a){
         this.id = a;
     }
-
+    public int getId() {
+        return id;
+    }
     @Override
     public void draw(TextGraphics graphics) {
         int x = getPosition().getX();

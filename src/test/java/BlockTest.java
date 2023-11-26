@@ -1,5 +1,3 @@
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
