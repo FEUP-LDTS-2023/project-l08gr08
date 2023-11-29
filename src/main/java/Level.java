@@ -10,10 +10,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.MAX_VALUE;
+
 public class Level {
     private int inp;
+    int bestMoves = MAX_VALUE;
+
     int centerX = 21;
-    int centerY = 4;
+    int centerY = 3;
 
     int TerminalFirstX = 30;
     int TerminalFirstY = 11;
@@ -46,24 +50,24 @@ public class Level {
     public void movePlayer(Position position) {
         player.setPosition(position);
     }
+    int levelLength;
 
     public void readFile() { // read files to create levels
         String file = "";
         if (this.inp == 1) {
-            file = "src/main/java/NIVEL1.txt";
+            file = "src/resources/levels/NIVEL1.txt";
         } else if (this.inp == 2) {
-            file = "src/main/java/NIVEL2.txt";
+            file = "src/resources/levels/NIVEL2.txt";
         } else if (this.inp == 3) {
-            file = "src/main/java/NIVEL3.txt";
+            file = "src/resources/levels/NIVEL3.txt";
         } else if (this.inp == 4) {
-            file = "src/main/java/NIVEL4.txt";
+            file = "src/resources/levels/NIVEL4.txt";
         } else if (this.inp == 5) {
-            file = "src/main/java/NIVEL5.txt";
+            file = "src/resources/levels/NIVEL5.txt";
         }
-        int temp = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
-            temp = line.length();
+            levelLength = line.length();
             int coordX;
             int coordY = 0;
 
@@ -113,13 +117,9 @@ public class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Block b : blocks) { b.setPlayerX(player.getPosition().getX());}
-        for (Item i : items) {i.setPlayerX(player.getPosition().getX());}
-        for (Enemy e : enemies){e.setPlayerX(player.getPosition().getX());}
     } // DONE
 
-    public void draw(TextGraphics graphics) {
-        // TEXT APPEARING ON TOP OF LEVEL
+    public void draw(TextGraphics graphics) { // TEXT APPEARING ON TOP OF LEVEL
         graphics.putString(new TerminalPosition(centerX + 0, 1), "B");
         graphics.putString(new TerminalPosition(centerX + 1, 1), "L");
         graphics.putString(new TerminalPosition(centerX + 2, 1), "O");
@@ -143,25 +143,50 @@ public class Level {
         else if(inp == 4){ graphics.putString(new TerminalPosition(centerX + 17, 1), "4");}
         else if(inp == 5){ graphics.putString(new TerminalPosition(centerX + 17, 1), "5");}
 
+        graphics.putString(new TerminalPosition(centerX, 16), "Move Score: ");
+        graphics.putString(new TerminalPosition(centerX, 18), "Time: ");
+
         graphics.setBackgroundColor(TextColor.Factory.fromString("#8cd3ff")); // TODO change background to  a beautiful skye pixel art :]
         graphics.fillRectangle(new TerminalPosition(centerX,centerY), new TerminalSize(TerminalFirstX, TerminalFirstY),' ');
         player.draw(graphics);
-        for (Block b : blocks) b.draw(graphics);
-        for (Item i : items) i.draw(graphics);
-        for (Enemy e : enemies) e.draw(graphics);
+
+        int firstX;
+        int lastX;
+        int diff = 0;
+
+        if (player.getPosition().getX() <= 14){
+            firstX = 0;
+            lastX = 30;;
+        }
+        else if (player.getPosition().getX() > 14 && player.getPosition().getX() < levelLength - 15){
+            firstX = player.getPosition().getX() - 14;
+            lastX = player.getPosition().getX() + 15;
+            diff = player.getPosition().getX() - 14;
+            player.setDiff(diff);
+        }
+        else {
+            firstX = levelLength - 30;
+            lastX = levelLength;
+            diff = 13;
+            player.setDiff(diff);
+        }
+        for (Block b : blocks) if (firstX <= b.getPosition().getX() && b.getPosition().getX() <= lastX) {
+            b.setDiff(diff);
+            b.draw(graphics);
+        }
+        for (Item i : items) if (firstX <= i.getPosition().getX() && i.getPosition().getX() <= lastX) {
+            i.setDiff(diff);
+            i.draw(graphics);
+        }
+        for (Enemy e : enemies) if (firstX <= e.getPosition().getX() && e.getPosition().getX() <= lastX){
+            e.setDiff(diff);
+            e.draw(graphics);
+        };
         for (Wall wall : walls) wall.draw(graphics);
     }
+
     public void processKey(KeyStroke key) {
         System.out.println(key);
         int x = player.getPosition().getX();
-        for (Block b : blocks) {
-            b.setPlayerX(x);
-        }
-        for (Item i : items) {
-            i.setPlayerX(x);
-        }
-        for (Enemy e : enemies){
-            e.setPlayerX(x);
-        }
     }
 }

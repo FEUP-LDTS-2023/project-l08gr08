@@ -1,11 +1,6 @@
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 public class PlayerTest {
 
     @Test
@@ -15,7 +10,6 @@ public class PlayerTest {
         assertEquals(0, player.getPosition().getX());
         assertEquals(0, player.getPosition().getY());
     }
-
     @Test
     public void testMoveRight() {
         Player player = new Player(0, 0);
@@ -24,7 +18,6 @@ public class PlayerTest {
         assertEquals(1, newPosition.getX());
         assertEquals(0, newPosition.getY());
     }
-
     @Test
     public void testMoveLeft() {
         Player player = new Player(1, 0);
@@ -33,7 +26,6 @@ public class PlayerTest {
         assertEquals(0, newPosition.getX());
         assertEquals(0, newPosition.getY());
     }
-
     @Test
     public void testSwitchDirection() {
         Player player = new Player(0, 0);
@@ -44,7 +36,6 @@ public class PlayerTest {
 
         assertNotEquals(initialDirection, newDirection);
     }
-
     @Test
     public void testNextStage() {
         Player player = new Player(0, 0);
@@ -55,5 +46,4 @@ public class PlayerTest {
 
         assertNotEquals(initialStage, newStage);
     }
-
 }

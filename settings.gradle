@@ -1,2 +1,4 @@
 rootProject.name = 'ProjectLDTS'
+include 'src:main:files'
+findProject(':src:main:files')?.name = 'files'
 
