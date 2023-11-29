@@ -16,16 +16,15 @@ public class Block extends Element {
 
     @Override
     public void draw(TextGraphics graphics) { // change later // make texture for block and movable block //
-        int x = getPosition().getX();
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
         if (isMovable()) {
             graphics.setBackgroundColor(TextColor.Factory.fromString("#f0ff4f"));
-            graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "M");
+            graphics.putString(new TerminalPosition(centerX + getPosition().getX() - diff, centerY + getPosition().getY()), "M");
         }
         else {
             graphics.setBackgroundColor(TextColor.Factory.fromString("#6b431c"));
-            graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "B");
+            graphics.putString(new TerminalPosition(centerX + getPosition().getX() - diff , centerY + getPosition().getY()), "B");
         }
     }
 }

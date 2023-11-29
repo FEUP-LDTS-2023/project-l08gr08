@@ -23,9 +23,9 @@ public class Item extends Element{
             graphics.enableModifiers(SGR.BOLD);
 
             if (id == 1)
-                graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "1");
+                graphics.putString(new TerminalPosition(centerX - diff + getPosition().getX(), centerY + getPosition().getY()), "1");
             else if (id == 2)
-                graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "2");
-            else graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "3");
+                graphics.putString(new TerminalPosition(centerX - diff + getPosition().getX(), centerY + getPosition().getY()), "2");
+            else graphics.putString(new TerminalPosition(centerX - diff  + getPosition().getX(), centerY + getPosition().getY()), "3");
     }
 }

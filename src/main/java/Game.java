@@ -46,33 +46,41 @@ public class Game {
             level.processKey(key);
             Player player = level.getPlayer();
 
-            if(stage == 0){
+            if(stage == 0){ // WHEN MENU IS OPEN
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == '1') {
                     setStage(1);
                 }
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == '2') {
+                    setStage(2);
+                }
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == '3' || key.getCharacter() == 'q') {
+                    screen.close();
+                    break;
+                }
             }
 
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
-                screen.close();
-                break;
-            }
-            else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'r') {
-            }
-            else if (key.getKeyType() == KeyType.EOF) {
-                break;
-            }
-            // !!! EDITAR !!!  ///
-            else if (key.getKeyType() == KeyType.ArrowRight && player.getDirection()){
-                level.movePlayer(player.moveRight());
-            }
-            else if (key.getKeyType() == KeyType.ArrowRight && !player.getDirection()){
-                level.getPlayer().switchDirection();
-            }
-            else if (key.getKeyType() == KeyType.ArrowLeft && player.getDirection()){
-                level.getPlayer().switchDirection();
-            }
-            else if (key.getKeyType() == KeyType.ArrowLeft && !player.getDirection()){
-                level.movePlayer(player.moveLeft());
+            if(stage == 1) {
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+                    screen.close();
+                    break;
+                }
+                else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'r') {
+                }
+                else if (key.getKeyType() == KeyType.EOF) {
+                    break;
+                }
+                else if (key.getKeyType() == KeyType.ArrowRight && player.getDirection()) {
+                    level.movePlayer(player.moveRight());
+                }
+                else if (key.getKeyType() == KeyType.ArrowRight && !player.getDirection()) {
+                    level.getPlayer().switchDirection();
+                }
+                else if (key.getKeyType() == KeyType.ArrowLeft && player.getDirection()) {
+                    level.getPlayer().switchDirection();
+                }
+                else if (key.getKeyType() == KeyType.ArrowLeft && !player.getDirection()) {
+                    level.movePlayer(player.moveLeft());
+                }
             }
         }
     }

@@ -27,6 +27,6 @@ public class Enemy extends Element {
             graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
             graphics.setBackgroundColor(TextColor.Factory.fromString("#5a0075"));
             graphics.enableModifiers(SGR.BOLD);
-            graphics.putString(new TerminalPosition(centerX + getPosition().getX(), centerY + getPosition().getY()), "E");
+            graphics.putString(new TerminalPosition(centerX -diff + getPosition().getX(), centerY + getPosition().getY()), "E");
     }
 }
