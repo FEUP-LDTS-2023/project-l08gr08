@@ -11,13 +11,19 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Game {
- // private int stage = 0; // STAGE 0 SHOULD OPEN MENU // TODO LATER // FOR NOW KEEP STAGE AT 1 -> LEVEL
-    private int stage = 1;
-    private Level level = new Level(1);
+    private int stage = 0; // STAGE 0 SHOULD OPEN MENU // TODO LATER // FOR NOW KEEP STAGE AT 1 -> LEVEL
+    private LevelA levelA = new LevelA(1);
+    private LevelB levelB = new LevelB(2);
+    // private LevelC levelC = new LevelC(3);
+
     private Screen screen;
 
     public void setStage(int s){
         this.stage = s;
+    }
+
+    public void setLevelA(){
+        levelA = new LevelA(1);
     }
 
     public Game() throws IOException {
@@ -34,17 +40,12 @@ public class Game {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
-
-        level.createWalls();
-        level.readFile();
     }
 
     public void run() throws IOException {
         while (true) {
             draw();
             KeyStroke key = screen.readInput();
-            level.processKey(key);
-            Player player = level.getPlayer();
 
             if(stage == 0){ // WHEN MENU IS OPEN
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == '1') {
@@ -53,33 +54,38 @@ public class Game {
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == '2') {
                     setStage(2);
                 }
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == '3' || key.getCharacter() == 'q') {
+                if (key.getKeyType() == KeyType.Character && (key.getCharacter() == '3' || key.getCharacter() == 'q' || key.getCharacter() == 'Q')) {
                     screen.close();
                     break;
                 }
             }
 
             if(stage == 1) {
+                levelA.processKey(key);
+                levelA.createWalls();
+                levelA.readFile();
+
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                     screen.close();
                     break;
                 }
                 else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'r') {
+                    // restart level;
                 }
                 else if (key.getKeyType() == KeyType.EOF) {
                     break;
                 }
-                else if (key.getKeyType() == KeyType.ArrowRight && player.getDirection()) {
-                    level.movePlayer(player.moveRight());
+                else if (key.getKeyType() == KeyType.ArrowRight && levelA.getPlayer().getDirection()) {
+                    levelA.getPlayer().setPosition(levelA.movePlayerRight());
                 }
-                else if (key.getKeyType() == KeyType.ArrowRight && !player.getDirection()) {
-                    level.getPlayer().switchDirection();
+                else if (key.getKeyType() == KeyType.ArrowRight && !levelA.getPlayer().getDirection()) {
+                    levelA.getPlayer().switchDirection();
                 }
-                else if (key.getKeyType() == KeyType.ArrowLeft && player.getDirection()) {
-                    level.getPlayer().switchDirection();
+                else if (key.getKeyType() == KeyType.ArrowLeft && levelA.getPlayer().getDirection()) {
+                    levelA.getPlayer().switchDirection();
                 }
-                else if (key.getKeyType() == KeyType.ArrowLeft && !player.getDirection()) {
-                    level.movePlayer(player.moveLeft());
+                else if (key.getKeyType() == KeyType.ArrowLeft && !levelA.getPlayer().getDirection()) {
+                    levelA.getPlayer().setPosition(levelA.movePlayerLeft());
                 }
             }
         }
@@ -88,7 +94,7 @@ public class Game {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
         // if (stage == 0) menu.draw(graphics) // TODO -> DRAW MENU LATER
-        if (stage == 1) {level.draw(graphics);}
+        if (stage == 1) {levelA.draw(graphics);}
         screen.refresh();
     }
 }

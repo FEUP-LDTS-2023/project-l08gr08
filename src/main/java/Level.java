@@ -12,12 +12,13 @@ import java.util.List;
 
 import static java.lang.Integer.MAX_VALUE;
 
-public class Level {
+abstract class Level {
     private int inp;
     int bestMoves = MAX_VALUE;
+    int moveCounter = 0;
 
     int centerX = 21;
-    int centerY = 3;
+    int centerY = 4;
 
     int TerminalFirstX = 30;
     int TerminalFirstY = 11;
@@ -47,9 +48,31 @@ public class Level {
         }
     }
 
-    public void movePlayer(Position position) {
-        player.setPosition(position);
+    public Position movePlayerRight() {
+        Position position = player.getPosition();
+        for(Block b : blocks){
+            if(b.getPosition().getX() - 1 == player.getPosition().getX() && b.getPosition().getY() <= player.getPosition().getY()) {
+                int newX = b.getPosition().getX();
+                int newY = b.getPosition().getY();
+                position = new Position(newX, newY);
+                moveCounter++;
+            }
+        }
+        return position;
     }
+    public Position movePlayerLeft() {
+        Position position = player.getPosition();
+        for(Block b : blocks) {
+            if (b.getPosition().getX() + 1 == player.getPosition().getX() && b.getPosition().getY() <= player.getPosition().getY()) {
+                int newX = b.getPosition().getX();
+                int newY = b.getPosition().getY();
+                position = new Position(newX, newY);
+                moveCounter++;
+            }
+        }
+        return position;
+    }
+
     int levelLength;
 
     public void readFile() { // read files to create levels
@@ -143,8 +166,8 @@ public class Level {
         else if(inp == 4){ graphics.putString(new TerminalPosition(centerX + 17, 1), "4");}
         else if(inp == 5){ graphics.putString(new TerminalPosition(centerX + 17, 1), "5");}
 
-        graphics.putString(new TerminalPosition(centerX, 16), "Move Score: ");
-        graphics.putString(new TerminalPosition(centerX, 18), "Time: ");
+        graphics.putString(new TerminalPosition(centerX, 16), "MOVE SCORE: ");
+        graphics.putString(new TerminalPosition(centerX, 17), "TIME: ");
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#8cd3ff")); // TODO change background to  a beautiful skye pixel art :]
         graphics.fillRectangle(new TerminalPosition(centerX,centerY), new TerminalSize(TerminalFirstX, TerminalFirstY),' ');
@@ -187,6 +210,5 @@ public class Level {
 
     public void processKey(KeyStroke key) {
         System.out.println(key);
-        int x = player.getPosition().getX();
     }
 }
