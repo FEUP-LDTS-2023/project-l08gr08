@@ -48,13 +48,6 @@ public class Player extends Element {
         this.holdingBlock = h;
     }
 
-    public Position moveRight() {
-        return new Position(getPosition().getX() + 1, getPosition().getY());
-    }
-    public Position moveLeft() {
-        return new Position(getPosition().getX() - 1, getPosition().getY());
-    }
-
     // Draw method defined //
     @Override
     public void draw(TextGraphics graphics) {
