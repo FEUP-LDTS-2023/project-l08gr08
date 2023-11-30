@@ -23,12 +23,14 @@ public class Player extends Element {
             stage = 1;
         } else stage++;
     }
+
     public boolean getDirection() {
         return direction;
     }
     public void switchDirection() {
         direction = !direction;
     }
+
     public boolean getPower() {
         return power;
     }

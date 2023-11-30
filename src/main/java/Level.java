@@ -50,8 +50,8 @@ abstract class Level {
 
     public Position movePlayerRight() {
         Position position = player.getPosition();
-        for(Block b : blocks){
-            if(b.getPosition().getX() - 1 == player.getPosition().getX() && b.getPosition().getY() <= player.getPosition().getY()) {
+        for (Block b : blocks){
+            if (b.getPosition().getX() - 1 == player.getPosition().getX() && b.getPosition().getY() <= player.getPosition().getY()) {
                 int newX = b.getPosition().getX();
                 int newY = b.getPosition().getY();
                 position = new Position(newX, newY);
@@ -62,7 +62,7 @@ abstract class Level {
     }
     public Position movePlayerLeft() {
         Position position = player.getPosition();
-        for(Block b : blocks) {
+        for (Block b : blocks) {
             if (b.getPosition().getX() + 1 == player.getPosition().getX() && b.getPosition().getY() <= player.getPosition().getY()) {
                 int newX = b.getPosition().getX();
                 int newY = b.getPosition().getY();
