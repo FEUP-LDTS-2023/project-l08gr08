@@ -1,7 +1,7 @@
 package bdude.model.game.elements;
 import bdude.model.Position;
 
-abstract class Element {
+public abstract class Element {
     private Position position;
     public Element(int x, int y) {
             this.position = new Position(x, y);

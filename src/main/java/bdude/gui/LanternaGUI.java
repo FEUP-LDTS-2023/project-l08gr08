@@ -1,6 +1,5 @@
 package bdude.gui;
 
-import bdude.gui.GUI.ACTION;
 import bdude.model.Position;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -19,7 +18,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-public class LanternaGUI {
+public class LanternaGUI implements GUI {
     private final Screen screen;
 
     public LanternaGUI(Screen screen) {
@@ -66,7 +65,6 @@ public class LanternaGUI {
     public ACTION getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
         if (keyStroke == null) return ACTION.NONE;
-
         if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'q' || keyStroke.getCharacter() == 'Q')) return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'p' || keyStroke.getCharacter() == 'P')) return ACTION.POWER;
@@ -75,38 +73,33 @@ public class LanternaGUI {
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
         if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
-
         if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;
-
         return ACTION.NONE;
     }
 
     @Override
     public void drawPlayer(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'H', "#FFD700");
+        drawCharacter(position.getX(), position.getY(), 'P', "#FFD700");
     }
-
     @Override
     public void drawBlock(Position position) {
-        drawCharacter(position.getX(), position.getY(), '#', "#3333FF");
+        drawCharacter(position.getX(), position.getY(), 'B', "#3333FF");
     }
-
     @Override
     public void drawEnemy(Position position) {
-        drawCharacter(position.getX(), position.getY(), '@', "#CC0000");
+        drawCharacter(position.getX(), position.getY(), 'E', "#CC0000");
     }
-
     @Override
     public void drawItem(Position position) {
         drawCharacter(position.getX(), position.getY(), 'I', "#00FF00");
     }
+
     @Override
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
         tg.putString(position.getX(), position.getY(), text);
     }
-
     private void drawCharacter(int x, int y, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
@@ -117,12 +110,10 @@ public class LanternaGUI {
     public void clear() {
         screen.clear();
     }
-
     @Override
     public void refresh() throws IOException {
         screen.refresh();
     }
-
     @Override
     public void close() throws IOException {
         screen.close();
