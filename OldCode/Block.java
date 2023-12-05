@@ -13,7 +13,7 @@ public class Block extends Element {
     public void makeMovable() {
         this.movable = true;
     }
-
+    
     @Override
     public void draw(TextGraphics graphics) { // change later // make texture for block and movable block //
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));

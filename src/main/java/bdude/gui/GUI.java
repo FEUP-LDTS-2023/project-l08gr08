@@ -8,7 +8,7 @@ public interface GUI {
     ACTION getNextAction() throws IOException;
     void drawPlayer(Position position);
 
-    void drawWall(Position position);
+    void drawBlock(Position position);
 
     void drawEnemy(Position position);
 
@@ -18,6 +18,7 @@ public interface GUI {
 
     void refresh() throws IOException;
 
-    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
+    void close() throws IOException;
+    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, POWER, PAUSE}
 
 }

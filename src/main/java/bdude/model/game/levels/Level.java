@@ -15,7 +15,7 @@ import bdude.model.game.elements.Item;
 import bdude.model.Position;
 import static java.lang.Integer.MAX_VALUE;
 
-abstract class Level {
+ public class Level {
     private int inp;
     int bestMoves = MAX_VALUE;
     int moveCounter = 0;
