@@ -29,5 +29,17 @@ public class PlayerController extends GameController {
         }
     }
     public void step(Game game, GUI.ACTION action, long time) {
+        if (action == GUI.ACTION.DOWN) {
+            movePlayerDown();
+        }
+        if (action == GUI.ACTION.UP) {
+            movePlayerUp();
+        }
+        if (action == GUI.ACTION.LEFT) {
+            movePlayerLeft();
+        }
+        if (action == GUI.ACTION.RIGHT) {
+            movePlayerRight();
+        }
     }
 }
