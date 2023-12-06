@@ -10,6 +10,8 @@ public class Player extends Element {
     public Player(int x, int y) {
         super(x, y);
     }
+
+    //
     public int getStage() {
         return stage;
     }
@@ -18,25 +20,30 @@ public class Player extends Element {
             stage = 1;
         } else stage++;
     }
+
+    //
     public boolean getDirection() {
         return direction;
     }
     public void switchDirection() {
         direction = !direction;
     }
+
+    //
     public boolean getPower() {
         return power;
     }
     public void Power(boolean a) {
         this.power = a;
     }
-
     public boolean getPowerActive(boolean a) {
         return powerActive;
     }
     public void setPowerActive(boolean a) {
         this.powerActive = a;
     }
+
+    //
     public boolean getHoldingBlock() {
         return holdingBlock;
     }

@@ -2,6 +2,8 @@ package bdude.model.game.levels;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import bdude.model.Position;
 import bdude.model.game.elements.Block;
 import bdude.model.game.elements.Enemy;
 import bdude.model.game.elements.Player;
@@ -16,12 +18,39 @@ public class Level{
     private List<Block> blocks = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
     private List<Enemy> enemies = new ArrayList<>();
-
     private Player player = new Player(0, 0);
 
     public Level(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+
+    public boolean isEmpty(Position position){
+        for(Wall wall : walls){
+            if(wall.getPosition().equals(position)) return false;
+        }
+        return true;
+    }
+    public boolean isMovableBlock(Position position){
+        for(Block block : blocks){
+            if(block.getPosition().equals(position) && block.isMovable()) return true;
+        }
+        return false;
+    }
+    public boolean isItem(Position position){
+        for(Item item : items){
+            if(item.getPosition().equals(position)) return true;
+        }
+        return false;
+    }
+
+    public boolean playerDead(Position position){
+        for(Enemy e : enemies){
+            if(e.getMoveCounter() == 5 && e.getPosition().getX() == position.getX()){
+                return true;
+            }
+        }
+        return false;
     }
 
     // Setters //
@@ -40,7 +69,6 @@ public class Level{
     public void setEnemies(List<Enemy> e){
         this.enemies = e;
     }
-
     // Getters //
     public Player getPlayer(){
         return player;

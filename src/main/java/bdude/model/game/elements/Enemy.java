@@ -7,7 +7,7 @@ public class Enemy extends Element {
     }
 
     Random random = new Random();
-    private int moveCounter = random.nextInt(6);
+    private int moveCounter = random.nextInt(4);
 
     public void addCounter() {
         if (moveCounter == 5) {
@@ -15,7 +15,7 @@ public class Enemy extends Element {
         } else moveCounter++;
     }
 
-    private int getMoveCounter() {
+    public int getMoveCounter() {
         return moveCounter;
     }
 }

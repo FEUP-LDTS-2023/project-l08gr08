@@ -12,12 +12,4 @@ public abstract class Element {
     public void setPosition(Position position) {
             this.position = position;
         }
-
-    int centerX = 21;
-    int centerY = 4;
-
-    int diff = 0;
-    public void setDiff(int d){
-            this.diff = d;
-        }
 }

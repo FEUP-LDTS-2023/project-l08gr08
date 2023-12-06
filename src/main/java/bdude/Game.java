@@ -5,7 +5,6 @@ import bdude.model.menu.Menu;
 import bdude.states.MenuState;
 import bdude.states.State;
 
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
