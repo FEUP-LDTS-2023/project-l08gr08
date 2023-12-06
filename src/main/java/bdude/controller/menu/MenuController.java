@@ -3,7 +3,6 @@ package bdude.controller.menu;
 import bdude.Game;
 import bdude.controller.Controller;
 import bdude.gui.GUI;
-import bdude.model.game.levels.LevelBuilder;
 import bdude.model.game.levels.LevelReadBuilder;
 import bdude.model.menu.Menu;
 import bdude.states.GameState;
@@ -25,9 +24,9 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedLevel1()) game.setState(new GameState(new LevelReadBuilder(1).createArena()));
-                if (getModel().isSelectedLevel2()) game.setState(new GameState(new LevelReadBuilder(2).createArena()));
-                if (getModel().isSelectedLevel3()) game.setState(new GameState(new LevelReadBuilder(3).createArena()));
+                if (getModel().isSelectedLevel1()) game.setState(new GameState(new LevelReadBuilder(1).createLevel()));
+                if (getModel().isSelectedLevel2()) game.setState(new GameState(new LevelReadBuilder(2).createLevel()));
+                if (getModel().isSelectedLevel3()) game.setState(new GameState(new LevelReadBuilder(3).createLevel()));
         }
     }
 }
