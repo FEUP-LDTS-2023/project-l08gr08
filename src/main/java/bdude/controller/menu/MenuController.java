@@ -28,7 +28,6 @@ public class MenuController extends Controller<Menu> {
                 if (getModel().isSelectedLevel1()) game.setState(new GameState(new LevelReadBuilder(1).createArena()));
                 if (getModel().isSelectedLevel2()) game.setState(new GameState(new LevelReadBuilder(2).createArena()));
                 if (getModel().isSelectedLevel3()) game.setState(new GameState(new LevelReadBuilder(3).createArena()));
-
         }
     }
 }

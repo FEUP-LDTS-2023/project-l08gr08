@@ -31,20 +31,19 @@ public class Level{
         }
         return true;
     }
-    public boolean isMovableBlock(Position position){
+    public boolean isMovableBlock(Position position) {
         for(Block block : blocks){
             if(block.getPosition().equals(position) && block.isMovable()) return true;
         }
         return false;
     }
-    public boolean isItem(Position position){
+    public boolean isItem(Position position) {
         for(Item item : items){
             if(item.getPosition().equals(position)) return true;
         }
         return false;
     }
-
-    public boolean playerDead(Position position){
+    public boolean playerDead(Position position) {
         for(Enemy e : enemies){
             if(e.getMoveCounter() == 5 && e.getPosition().getX() == position.getX()){
                 return true;
