@@ -12,7 +12,7 @@ public class LevelReadBuilder extends LevelBuilder {
     private final int level;
     private final List<String> lines;
 
-    public LevelReadBuilder(int level, List<String> lines, List<String> lines1) throws IOException {
+    public LevelReadBuilder(int level) throws IOException {
         this.level = level;
 
         URL resource = null;
