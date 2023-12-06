@@ -1,16 +1,27 @@
 package bdude.model.game.levels;
 
-import bdude.model.game.elements.Block;
-import bdude.model.game.elements.Enemy;
-import bdude.model.game.elements.Item;
-import bdude.model.game.elements.Player;
+import bdude.model.game.elements.*;
+import java.util.List;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-public class LevelBuilder() {
+public abstract class LevelBuilder {
     public Level createLevel(){
-        Level level = new Level(1);
+        Level level = new Level(getWidth(), getHeight());
+
+        level.setPlayer(createPlayer());
+        level.setBlocks(createBlocks());
+        level.setEnemies(createEnemies());
+        level.setItems(createItems());
+        level.setWalls(createWalls());
+
+        return level;
     }
+
+    protected abstract int getWidth();
+    protected abstract int getHeight();
+
+    protected abstract List<Block> createBlocks();
+    protected abstract List<Enemy> createEnemies();
+    protected abstract List<Wall> createWalls();
+    protected abstract List<Item> createItems();
+    protected abstract Player createPlayer();
 }

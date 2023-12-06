@@ -2,6 +2,8 @@ package bdude.model.game.levels;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import bdude.model.Position;
 import bdude.model.game.elements.Block;
 import bdude.model.game.elements.Enemy;
 import bdude.model.game.elements.Player;
@@ -24,7 +26,15 @@ public class Level{
         this.height = height;
     }
 
+    public boolean isEmpty(Position position){
+        for(Wall wall : walls){
+            if(wall.getPosition().equals(position)) return false;
+        }
+        return true;
+    }
+
     // Setters //
+
     public void setPlayer(Player a){
         this.player = a;
     }
