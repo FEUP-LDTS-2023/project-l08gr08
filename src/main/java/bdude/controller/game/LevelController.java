@@ -18,7 +18,6 @@ public class LevelController extends GameController {
 
     public LevelController(Level level) {
         super(level);
-
         this.playerController = new PlayerController(level);
         this.enemyController = new EnemyController(level);
         this.blockController = new BlockController(level);
