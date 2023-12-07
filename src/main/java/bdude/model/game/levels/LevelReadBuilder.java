@@ -18,7 +18,7 @@ public class LevelReadBuilder extends LevelBuilder {
     public LevelReadBuilder(int level) throws IOException {
         this.level = level;
 
-        URL resource = LevelReadBuilder.class.getResource("/resources/levels/NIVEL" + level + ".lvl");
+        URL resource = LevelReadBuilder.class.getResource("/levels/NIVEL" + level + ".lvl");
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
         lines = readLines(br);
