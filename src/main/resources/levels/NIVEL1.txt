@@ -1,0 +1,14 @@
+#############################################
+#############################################
+#                                           #
+#                            E              #
+#                 E                  E      #
+#                            M  B        BBB#
+#                  B  B   2 MM MB        B 3#
+#               1M B BB   BBBBBBBBBB     BBB#
+#      MM       BBBBBBB   BBBBBBBBBB    MBBB#
+#     BBBBB     BBBBBBBBBBBBBBBBBBBBBBBBBBBB#
+# > M BBBBBM   MBBBBBBBBBBBBBBBBBBBBBBBBBBBB#
+#BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB#
+#BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB#
+#############################################
