@@ -10,7 +10,6 @@ public class PlayerController extends GameController {
     public PlayerController(Level level) {
         super(level);
     }
-
     public void movePlayerLeft() {
         movePlayer(getModel().getPlayer().getPosition().getLeft());
     }
@@ -18,7 +17,8 @@ public class PlayerController extends GameController {
         movePlayer(getModel().getPlayer().getPosition().getRight());
     }
     public void movePlayerUp() {
-        movePlayer(getModel().getPlayer().getPosition().getUp());
+        if(getModel().getPlayer().getDirection()) movePlayer(getModel().getPlayer().getPosition().getUp());
+        else movePlayer(getModel().getPlayer().getPosition().getUp().getUp2());
     }
     public void movePlayerDown() {
         movePlayer(getModel().getPlayer().getPosition().getDown());
@@ -35,11 +35,17 @@ public class PlayerController extends GameController {
         if (action == GUI.ACTION.UP) {
             movePlayerUp();
         }
-        if (action == GUI.ACTION.LEFT) {
+        if (action == GUI.ACTION.LEFT && !getModel().getPlayer().getDirection()) {
             movePlayerLeft();
         }
-        if (action == GUI.ACTION.RIGHT) {
+        if (action == GUI.ACTION.RIGHT && getModel().getPlayer().getDirection()) {
             movePlayerRight();
+        }
+        if (action == GUI.ACTION.LEFT && getModel().getPlayer().getDirection()) {
+            getModel().getPlayer().switchDirection();
+        }
+        if (action == GUI.ACTION.RIGHT && !getModel().getPlayer().getDirection()) {
+            getModel().getPlayer().switchDirection();
         }
     }
 }
