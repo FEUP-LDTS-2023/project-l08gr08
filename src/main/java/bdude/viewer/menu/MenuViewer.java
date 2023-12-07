@@ -12,10 +12,11 @@ public class MenuViewer extends Viewer<Menu> {
 
     @Override
     protected void drawElements(GUI gui) {
-        gui.drawText(new Position(5, 5), "Poké-Dude", "#FFFFFF");
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(new Position(5, 7 + i),
+        gui.drawText(new Position(33, 5), "POKE - DUDE", "#FFFFFF");
+        for (int i = 0; i < getModel().getNumberEntries(); i++) {
+            gui.drawText(new Position(34, 8 + 2 * i),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+        }
     }
 }

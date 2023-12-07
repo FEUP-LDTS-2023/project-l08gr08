@@ -33,13 +33,13 @@ public class LanternaGUI implements GUI {
 
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+        terminalFactory.setForceAWTOverSwing(true);
+        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         Terminal terminal = terminalFactory.createTerminal();
         return terminal;
     }
 
-    //TODO -> FONT
     private Screen createScreen(Terminal terminal) throws IOException {
         final Screen screen;
         screen = new TerminalScreen(terminal);
@@ -53,11 +53,9 @@ public class LanternaGUI implements GUI {
         URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-
-        Font loadedFont = font.deriveFont(Font.PLAIN, 50);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -93,6 +91,8 @@ public class LanternaGUI implements GUI {
     public void drawItem(Position position) {
         drawCharacter(position.getX(), position.getY(), 'I', "#00FF00");
     }
+    @Override
+    public void drawWall(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#ABCABC"); }
 
     @Override
     public void drawText(Position position, String text, String color) {

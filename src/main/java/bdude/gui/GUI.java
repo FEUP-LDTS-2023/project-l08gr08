@@ -15,6 +15,8 @@ public interface GUI {
 
     void drawItem(Position position);
 
+    void drawWall(Position position);
+
     void drawText(Position position, String text, String color);
 
     void clear();
@@ -23,5 +25,4 @@ public interface GUI {
 
     void close() throws IOException;
     enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, POWER, PAUSE}
-
 }

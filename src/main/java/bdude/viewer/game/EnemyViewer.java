@@ -1,4 +1,11 @@
 package bdude.viewer.game;
 
-public class EnemyViewer {
+import bdude.gui.GUI;
+import bdude.model.game.elements.Enemy;
+
+public class EnemyViewer implements ElementViewer<Enemy>{
+    @Override
+    public void draw(Enemy enemy, GUI gui){
+        gui.drawEnemy(enemy.getPosition());
+    }
 }

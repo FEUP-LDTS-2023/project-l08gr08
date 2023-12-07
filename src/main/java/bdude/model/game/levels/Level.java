@@ -18,7 +18,7 @@ public class Level{
     private List<Block> blocks = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
     private List<Enemy> enemies = new ArrayList<>();
-    private Player player = new Player(0, 0);
+    private Player player;
 
     public Level(int width, int height) {
         this.width = width;
@@ -52,7 +52,6 @@ public class Level{
         return false;
     }
     // Setters //
-
     public void setPlayer(Player a){
         this.player = a;
     }
@@ -71,5 +70,17 @@ public class Level{
     // Getters //
     public Player getPlayer(){
         return player;
+    }
+    public List<Block> getBlocks() {
+        return blocks;
+    }
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+    public List<Item> getItems() {
+        return items;
+    }
+    public List<Wall> getWalls() {
+        return walls;
     }
 }

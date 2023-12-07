@@ -1,6 +1,9 @@
 package bdude.model.game.levels;
 
 import bdude.model.game.elements.*;
+import jdk.jshell.execution.LoaderDelegate;
+
+import javax.management.loading.ClassLoaderRepository;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,18 +18,15 @@ public class LevelReadBuilder extends LevelBuilder {
     public LevelReadBuilder(int level) throws IOException {
         this.level = level;
 
-        URL resource = null;
-        if (level == 1) {resource = LevelReadBuilder.class.getResource("src/resources/levels/NIVEL1.txt");}
-        else if (level == 2) {resource = LevelReadBuilder.class.getResource("src/resources/levels/NIVEL2.txt");}
-        else if (level == 3) {resource = LevelReadBuilder.class.getResource("src/resources/levels/NIVEL3.txt");}
+        URL resource = LevelReadBuilder.class.getResource("/resources/levels/NIVEL" + level + ".lvl");
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
-        this.lines = readLines(br);
+        lines = readLines(br);
     }
 
     private List<String> readLines(BufferedReader br) throws IOException {
         List<String> lines = new ArrayList<>();
-        for (String line; (line = br.readLine()) != null; )
+        for (String line; (line = br.readLine()) != null;)
             lines.add(line);
         return lines;
     }
