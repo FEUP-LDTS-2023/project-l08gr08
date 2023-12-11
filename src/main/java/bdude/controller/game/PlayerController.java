@@ -5,7 +5,6 @@ import bdude.gui.GUI;
 import bdude.model.Position;
 import bdude.model.game.levels.Level;
 
-
 public class PlayerController extends GameController {
     public PlayerController(Level level) {
         super(level);
@@ -46,6 +45,9 @@ public class PlayerController extends GameController {
         }
         if (action == GUI.ACTION.RIGHT && !getModel().getPlayer().getDirection()) {
             getModel().getPlayer().switchDirection();
+        }
+        if (action == GUI.ACTION.POWER && getModel().getPlayer().getPower() && !getModel().getPlayer().getPowerActive()){
+            getModel().getPlayer().setPowerActive();
         }
     }
 }

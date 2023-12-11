@@ -9,6 +9,8 @@ public interface GUI {
 
     void drawPlayer(Position position);
     void drawPlayer2(Position position);
+    void drawPlayerPower(Position position);
+    void drawPlayerPower2(Position position);
 
     void drawBlock(Position position);
     void drawMovableBlock(Position position);

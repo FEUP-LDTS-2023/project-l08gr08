@@ -36,11 +36,11 @@ public class Player extends Element {
     public void Power(boolean a) {
         this.power = a;
     }
-    public boolean getPowerActive(boolean a) {
+    public boolean getPowerActive() {
         return powerActive;
     }
-    public void setPowerActive(boolean a) {
-        this.powerActive = a;
+    public void setPowerActive() {
+        this.powerActive = true;
     }
 
     //
