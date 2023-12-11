@@ -23,6 +23,17 @@ public class Position {
     public Position getDown() {
         return new Position(x, y + 1);
     }
+
+    public Position getBlockUp() {
+        return new Position(x, y - 1);
+    }
+    public Position getBlockLeft() {
+        return new Position(x - 1, y);
+    }
+
+    public Position getBlockRight() {
+        return new Position(x + 1, y);
+    }
     public int getX() {
         return x;
     }

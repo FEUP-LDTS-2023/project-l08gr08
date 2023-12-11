@@ -8,6 +8,7 @@ public class Block extends Element {
     public boolean isMovable() {
         return movable;
     }
+
     public void makeMovable() {
         this.movable = true;
     }
