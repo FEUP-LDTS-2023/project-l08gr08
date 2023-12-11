@@ -11,6 +11,7 @@ public interface GUI {
     void drawPlayer2(Position position);
 
     void drawBlock(Position position);
+    void drawMovableBlock(Position position);
 
     void drawEnemy(Position position);
 
