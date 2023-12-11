@@ -20,13 +20,19 @@ public class PlayerController extends GameController {
     public void movePlayerUp() {
         Position currentPosition = getModel().getPlayer().getPosition();
         Position positionAbove = currentPosition.getUp();
-        Position positionNext = getModel().getPlayer().getDirection() ? currentPosition.getRight() : currentPosition.getLeft();
+        Position positionLR = currentPosition.getRight();
 
-        // Move the player up only if the position above is empty and the next position has support
-        if (getModel().isEmpty(positionAbove) && !getModel().isEmpty(positionNext)) {
+        if (!getModel().getPlayer().getDirection()) {
+            positionAbove = currentPosition.getUp2();
+            positionLR = currentPosition.getLeft();
+        }
+
+        // Move the player up and left only if the position above is empty and the left position has support
+        if (getModel().isEmpty(positionAbove) && getModel().isEmpty(positionLR)) {
             getModel().getPlayer().setPosition(positionAbove);
         }
     }
+
     public void movePlayerDown() {
         movePlayer(getModel().getPlayer().getPosition().getDown());
     }

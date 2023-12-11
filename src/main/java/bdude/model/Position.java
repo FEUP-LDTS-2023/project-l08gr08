@@ -15,7 +15,7 @@ public class Position {
         return new Position(x + 1, y);
     }
     public Position getUp() {
-        return new Position(x + 1, y - 1);
+        return new Position(x + 1 , y - 1);
     }
     public Position getUp2() {
         return new Position(x - 1, y - 1);
