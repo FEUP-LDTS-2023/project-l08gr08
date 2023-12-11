@@ -6,7 +6,6 @@ import bdude.gui.GUI;
 import bdude.model.game.levels.LevelReadBuilder;
 import bdude.model.menu.Menu;
 import bdude.states.GameState;
-
 import java.io.IOException;
 
 public class MenuController extends Controller<Menu> {
