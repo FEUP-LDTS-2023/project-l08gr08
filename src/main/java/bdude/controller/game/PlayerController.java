@@ -12,13 +12,21 @@ public class PlayerController extends GameController {
     }
     public void movePlayerLeft() {
         movePlayer(getModel().getPlayer().getPosition().getLeft());
+        handlePlayerFall();
     }
     public void movePlayerRight() {
         movePlayer(getModel().getPlayer().getPosition().getRight());
+        handlePlayerFall();
     }
     public void movePlayerUp() {
-        if(getModel().getPlayer().getDirection()) movePlayer(getModel().getPlayer().getPosition().getUp());
-        else movePlayer(getModel().getPlayer().getPosition().getUp().getUp2());
+        Position currentPosition = getModel().getPlayer().getPosition();
+        Position positionAbove = currentPosition.getUp();
+        Position positionNext = getModel().getPlayer().getDirection() ? currentPosition.getRight() : currentPosition.getLeft();
+
+        // Move the player up only if the position above is empty and the next position has support
+        if (getModel().isEmpty(positionAbove) && !getModel().isEmpty(positionNext)) {
+            getModel().getPlayer().setPosition(positionAbove);
+        }
     }
     public void movePlayerDown() {
         movePlayer(getModel().getPlayer().getPosition().getDown());
@@ -26,6 +34,17 @@ public class PlayerController extends GameController {
     private void movePlayer(Position position) {
         if (getModel().isEmpty(position)) {
             getModel().getPlayer().setPosition(position);
+        }
+
+    }
+    private void handlePlayerFall() {
+        Position currentPosition = getModel().getPlayer().getPosition();
+        Position positionBelow = currentPosition.getDown();
+
+        // Keep falling as long as there are empty positions below
+        while (getModel().isEmpty(positionBelow)) {
+            getModel().getPlayer().setPosition(positionBelow);
+            positionBelow = positionBelow.getDown();
         }
     }
     public void step(Game game, GUI.ACTION action, long time) {

@@ -29,6 +29,9 @@ public class Level{
         for(Wall wall : walls){
             if(wall.getPosition().equals(position)) return false;
         }
+        for(Block block : blocks){
+            if(block.getPosition().equals(position)) return false;
+        }
         return true;
     }
     public boolean isMovableBlock(Position position) {
