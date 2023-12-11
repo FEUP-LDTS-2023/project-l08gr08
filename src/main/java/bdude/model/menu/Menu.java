@@ -7,7 +7,7 @@ public class Menu {
     private final List<String> entries;
     private int currentEntry = 0;
     public Menu() {
-        this.entries = Arrays.asList("Level - 1", "Level - 2", "Level - 3", "Exit");
+        this.entries = Arrays.asList("Level - 1", "Level - 2", "Level - 3", "Controls", "Exit");
     }
     public void nextEntry() {
         currentEntry++;
@@ -26,7 +26,7 @@ public class Menu {
         return currentEntry == i;
     }
     public boolean isSelectedExit() {
-        return isSelected(3);
+        return isSelected(4);
     }
     public boolean isSelectedLevel3() {
         return isSelected(2);
@@ -37,6 +37,7 @@ public class Menu {
     public boolean isSelectedLevel1() {
         return isSelected(0);
     }
+    public boolean isSelectedControls() { return isSelected(3); }
     public int getNumberEntries() {
         return this.entries.size();
     }
