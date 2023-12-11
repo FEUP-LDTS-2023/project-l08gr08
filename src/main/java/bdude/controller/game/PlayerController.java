@@ -27,8 +27,7 @@ public class PlayerController extends GameController {
             positionLR = currentPosition.getLeft();
         }
 
-        // Move the player up and left only if the position above is empty and the left position has support
-        if (getModel().isEmpty(positionAbove) && getModel().isEmpty(positionLR)) {
+        if (getModel().isEmpty(positionAbove) && !getModel().isEmpty(positionLR)) {
             getModel().getPlayer().setPosition(positionAbove);
         }
     }
