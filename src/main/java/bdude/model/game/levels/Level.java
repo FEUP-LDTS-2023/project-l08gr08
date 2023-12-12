@@ -45,6 +45,9 @@ public class Level{
         blocks.remove(temp);
     }
 
+    public void addBlock(Block block) {
+        blocks.add(block);
+    }
     public boolean isMovableBlock(Position position) {
         for(Block block : blocks){
             if(block.getPosition().equals(position) && block.isMovable()) return true;
