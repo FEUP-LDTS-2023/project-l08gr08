@@ -3,11 +3,9 @@ package bdude.controller.game;
 import bdude.Game;
 import bdude.gui.GUI;
 import bdude.model.Position;
-<<<<<<< HEAD
+
 import bdude.model.game.elements.Enemy;
-=======
 import bdude.model.game.elements.Block;
->>>>>>> refs/remotes/origin/master
 import bdude.model.game.levels.Level;
 import bdude.model.menu.Menu;
 import bdude.states.MenuState;
@@ -81,7 +79,7 @@ public class PlayerController extends GameController {
     public void pickBlockRight(){
         Position blockPos = getModel().getPlayer().getPosition().getRight();
 
-        if (getModel().isMovableBlock(blockPos)){
+        if (getModel().isMovableBlock(blockPos) && getModel().isEmpty(new Position(blockPos.getX(),blockPos.getY()-1))){
             getModel().getPlayer().setHoldingBlock(true);
             getModel().deleteBlock(blockPos);
         }
@@ -90,7 +88,7 @@ public class PlayerController extends GameController {
     public void pickBlockLeft(){
         Position blockPos = getModel().getPlayer().getPosition().getLeft();
 
-        if (getModel().isMovableBlock(blockPos)){
+        if (getModel().isMovableBlock(blockPos) && getModel().isEmpty(new Position(blockPos.getX(),blockPos.getY()-1))){
             getModel().getPlayer().setHoldingBlock(true);
             getModel().deleteBlock(blockPos);
         }
@@ -145,7 +143,7 @@ public class PlayerController extends GameController {
     }
 
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.UP) {
+        if (action == GUI.ACTION.UP && !getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY()+1))) {
             movePlayerUp();
             getModel().getPlayer().addCounter();
         }
