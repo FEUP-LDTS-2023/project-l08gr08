@@ -3,6 +3,7 @@ package bdude.controller.game;
 import bdude.Game;
 import bdude.gui.GUI;
 import bdude.model.Position;
+import bdude.model.game.elements.Block;
 import bdude.model.game.levels.Level;
 
 public class PlayerController extends GameController {
@@ -67,6 +68,51 @@ public class PlayerController extends GameController {
         }
     }
 
+    public void dropBlockRight(){
+        Position currentPosition = getModel().getPlayer().getPosition();
+        Position blockNext = currentPosition.getRight();
+        if(!getModel().isEmpty(blockNext)) {
+            if (getModel().isEmpty(currentPosition.getUp())) {
+                Position newBlockP = currentPosition.getUp();
+                Block newBlock = new Block(newBlockP.getX(), newBlockP.getY());
+                newBlock.makeMovable();
+                getModel().addBlock(newBlock);
+                getModel().getPlayer().setHoldingBlock(false);
+            }
+        }
+        else {
+            Position newBlockP = currentPosition.getRight();
+            Block newBlock = new Block(newBlockP.getX(), newBlockP.getY());
+            newBlock.makeMovable();
+            getModel().addBlock(newBlock);
+            getModel().getPlayer().setHoldingBlock(false);
+        }
+    }
+
+    public void dropBlockLeft(){
+        Position currentPosition = getModel().getPlayer().getPosition();
+        Position blockNext = currentPosition.getLeft();
+
+        if(!getModel().isEmpty(blockNext)) {
+            if (getModel().isEmpty(currentPosition.getUp2())) {
+                Position newBlockP = currentPosition.getUp2();
+
+                Block newBlock = new Block(newBlockP.getX(), newBlockP.getY());
+                newBlock.makeMovable();
+
+                getModel().addBlock(newBlock);
+                getModel().getPlayer().setHoldingBlock(false);
+            }
+        }
+        else {
+            Position newBlockP = currentPosition.getLeft();
+            Block newBlock = new Block(newBlockP.getX(), newBlockP.getY());
+            newBlock.makeMovable();
+            getModel().addBlock(newBlock);
+            getModel().getPlayer().setHoldingBlock(false);
+        }
+    }
+
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.UP) {
             movePlayerUp();
@@ -92,11 +138,11 @@ public class PlayerController extends GameController {
         if (action == GUI.ACTION.DOWN && !getModel().getPlayer().getDirection() && !getModel().getPlayer().getHoldingBlock()){
             pickBlockLeft();
         }
-        if (action == GUI.ACTION.DOWN && getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
-            // dropBlockRight();
+        if (action == GUI.ACTION.DROP && getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
+            dropBlockRight();
         }
-        if (action == GUI.ACTION.DOWN && !getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
-            // dropBlockLeft();
+        if (action == GUI.ACTION.DROP && !getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
+            dropBlockLeft();
         }
     }
 }
