@@ -1,7 +1,6 @@
 package bdude.gui;
 
 import bdude.model.Position;
-
 import java.io.IOException;
 
 public interface GUI {
@@ -31,5 +30,5 @@ public interface GUI {
     void refresh() throws IOException;
     void close() throws IOException;
 
-    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, POWER}
+    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, POWER, RESTART}
 }

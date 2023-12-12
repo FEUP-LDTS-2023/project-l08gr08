@@ -19,6 +19,8 @@ public class GameViewer extends Viewer<Level> {
         gui.drawText(new Position(44,1), "#", "#FFFFFF");
         gui.drawText(new Position(44,2), "#", "#FFFFFF");
         gui.drawText(new Position(44,3), "#", "#FFFFFF");
+        gui.drawText(new Position(25,2), "LEVEL - ", "#ffe600");
+        gui.drawText(new Position(33,2), Integer.toString(getModel().getInp()), "#ffe600");
         gui.drawText(new Position(0, 1), "#              #", "#FFFFFF");
         gui.drawText(new Position(0, 2), "#              #", "#FFFFFF");
         gui.drawText(new Position(2, 2), "POKE - DUDE", "#db0404");

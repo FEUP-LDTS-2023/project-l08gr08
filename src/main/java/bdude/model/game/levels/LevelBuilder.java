@@ -12,12 +12,14 @@ public abstract class LevelBuilder {
         level.setEnemies(createEnemies());
         level.setItems(createItems());
         level.setWalls(createWalls());
+        level.setInp(getInp());
 
         return level;
     }
 
     protected abstract int getWidth();
     protected abstract int getHeight();
+    protected abstract int getInp();
 
     protected abstract List<Block> createBlocks();
     protected abstract List<Enemy> createEnemies();

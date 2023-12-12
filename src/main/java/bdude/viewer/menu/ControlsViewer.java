@@ -12,11 +12,36 @@ public class ControlsViewer extends Viewer<Controls> {
 
     @Override
     protected void drawElements(GUI gui) {
-        gui.drawText(new Position(33, 5), "POKE - DUDE", "#db0404");
-        for (int i = 0; i < getModel().getNumberEntries(); i++) {
-            gui.drawText(new Position(26,  8 + 2 * i),
+        gui.drawText(new Position(15, 4), "#             #", "#ffffff");
+        gui.drawText(new Position(15, 5), "#             #", "#ffffff");
+        gui.drawText(new Position(29, 5), "#", "#ffffff");
+        gui.drawText(new Position(17, 5), "POKE - DUDE", "#db0404");
+        gui.drawText(new Position(15, 6), "#             #", "#ffffff");
+        for (int i = 0; i < getModel().getNumberEntries() - 1; i++) {
+            gui.drawText(new Position(8,  9 + 2 * i),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+        }
+        for (int i = 5; i < 42; i++){
+            gui.drawText(new Position(i,7), "#", "#ffffff");
+        }
+        for (int j = 15; j < 30; j++){
+            gui.drawText(new Position(j,3), "#", "#FFFFFF");
+        }
+        for(int j = 7; j <= 31; j++){
+            gui.drawText(new Position(5,j), "#", "#ffffff");
+        }
+        for(int j = 7; j <= 31; j++){
+            gui.drawText(new Position(41,j), "#", "#ffffff");
+        }
+
+        gui.drawText(new Position(19,29), getModel().getEntry(9),getModel().isSelected(9) ? "#FFD700" : "#FFFFFF" );
+
+        for (int i = 5; i < 42; i++){
+            gui.drawText(new Position(i,27), "#", "#ffffff");
+        }
+        for (int i = 5; i < 42; i++){
+            gui.drawText(new Position(i,31), "#", "#ffffff");
         }
     }
 }

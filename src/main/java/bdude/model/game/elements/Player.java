@@ -51,6 +51,9 @@ public class Player extends Element {
     public void setPowerActive() {
         this.powerActive = true;
     }
+    public void setPowerInactive() {
+        this.powerActive = false;
+    }
 
     //
     public boolean getHoldingBlock() {
@@ -60,8 +63,4 @@ public class Player extends Element {
         this.holdingBlock = h;
     }
 
-
-    public void setBlock() {
-        setPosition(getPosition());
-    }
 }
