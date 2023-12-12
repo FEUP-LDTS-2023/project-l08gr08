@@ -132,17 +132,24 @@ public class PlayerController extends GameController {
         if (action == GUI.ACTION.POWER && getModel().getPlayer().getPower() && !getModel().getPlayer().getPowerActive()){
             getModel().getPlayer().setPowerActive();
         }
-        if (action == GUI.ACTION.DOWN && getModel().getPlayer().getDirection() && !getModel().getPlayer().getHoldingBlock()){
-            pickBlockRight();
-        }
-        if (action == GUI.ACTION.DOWN && !getModel().getPlayer().getDirection() && !getModel().getPlayer().getHoldingBlock()){
-            pickBlockLeft();
-        }
-        if (action == GUI.ACTION.DROP && getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
-            dropBlockRight();
-        }
-        if (action == GUI.ACTION.DROP && !getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
-            dropBlockLeft();
+
+        if (action == GUI.ACTION.DOWN) {
+            if (!getModel().getPlayer().getHoldingBlock()) {
+                if (!getModel().getPlayer().getDirection()) {
+                    pickBlockLeft();
+                }
+                else {
+                    pickBlockRight();
+                }
+            }
+            else {
+                if (!getModel().getPlayer().getDirection()) {
+                    dropBlockLeft();
+                }
+                else {
+                    dropBlockRight();
+                }
+            }
         }
     }
 }
