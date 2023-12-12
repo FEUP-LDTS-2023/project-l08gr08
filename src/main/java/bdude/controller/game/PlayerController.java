@@ -3,11 +3,14 @@ package bdude.controller.game;
 import bdude.Game;
 import bdude.gui.GUI;
 import bdude.model.Position;
-import bdude.model.game.elements.Enemy;
 import bdude.model.game.elements.Block;
 import bdude.model.game.levels.Level;
+import bdude.model.game.levels.LevelReadBuilder;
 import bdude.model.menu.Menu;
+import bdude.states.GameState;
 import bdude.states.MenuState;
+
+import java.io.IOException;
 
 public class PlayerController extends GameController {
     public PlayerController(Level level) {
@@ -147,7 +150,19 @@ public class PlayerController extends GameController {
         getModel().getPlayer().power(true);
     }
 
-    public void step(Game game, GUI.ACTION action, long time) {
+    public void breakBlock(Position position){
+        if(getModel().getPlayer().getPowerActive()) {
+            if (getModel().getPlayer().getDirection()) {
+                getModel().deleteBlock(position.getRight());
+            } else {
+                getModel().deleteBlock(position.getLeft());
+            }
+        }
+        getModel().getPlayer().power(false);
+        getModel().getPlayer().setPowerInactive();
+    }
+
+    public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (action == GUI.ACTION.UP && !getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY()+1))) {
             movePlayerUp();
             getModel().getPlayer().addCounter();
@@ -179,11 +194,15 @@ public class PlayerController extends GameController {
                 else dropBlockRight();
             }
         }
-
+        if (action == GUI.ACTION.RESTART){
+            game.setState(new GameState(new LevelReadBuilder(getModel().getInp()).createLevel()));
+        }
+        if (action == GUI.ACTION.SELECT){
+            breakBlock(getModel().getPlayer().getPosition());
+        }
         if(getModel().playerDead(getModel().getPlayer().getPosition())){
             game.setState(new MenuState(new Menu()));
         }
-
         if(getModel().isItem(getModel().getPlayer().getPosition())){
             pickItem(getModel().getPlayer().getPosition());
         }

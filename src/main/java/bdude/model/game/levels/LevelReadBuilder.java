@@ -38,6 +38,12 @@ public class LevelReadBuilder extends LevelBuilder {
     protected int getHeight() {
         return lines.size();
     }
+
+    @Override
+    protected int getInp() {
+        return level;
+    }
+
     @Override
     protected List<Block> createBlocks() {
         List<Block> blocks = new ArrayList<>();

@@ -14,6 +14,7 @@ public class Level{
     private final int width;
     private final int height;
 
+    private int inp;
     private List<Wall> walls = new ArrayList<>();
     private List<Block> blocks = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
@@ -24,6 +25,7 @@ public class Level{
         this.width = width;
         this.height = height;
     }
+
 
     public boolean isEmpty(Position position){
         for(Wall wall : walls){
@@ -97,6 +99,9 @@ public class Level{
     public void setEnemies(List<Enemy> e){
         this.enemies = e;
     }
+    public void setInp(int inpe){
+        this.inp = inpe;
+    }
     // Getters //
     public Player getPlayer(){
         return player;
@@ -112,5 +117,10 @@ public class Level{
     }
     public List<Wall> getWalls() {
         return walls;
+    }
+
+
+    public int getInp() {
+        return inp;
     }
 }
