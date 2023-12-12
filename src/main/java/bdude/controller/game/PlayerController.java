@@ -141,6 +141,12 @@ public class PlayerController extends GameController {
         else handleBlockFall();
     }
 
+    public void pickItem(Position position){
+        getModel().getPlayer().nextStage();
+        getModel().deleteItem(position);
+        getModel().getPlayer().power(true);
+    }
+
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.UP) {
             movePlayerUp();
@@ -152,6 +158,7 @@ public class PlayerController extends GameController {
         }
         if (action == GUI.ACTION.RIGHT && getModel().getPlayer().getDirection()) {
             movePlayerRight();
+            getModel().getPlayer().addCounter();
         }
         if (action == GUI.ACTION.LEFT && getModel().getPlayer().getDirection()) {
             getModel().getPlayer().switchDirection();
@@ -162,38 +169,25 @@ public class PlayerController extends GameController {
         if (action == GUI.ACTION.POWER && getModel().getPlayer().getPower() && !getModel().getPlayer().getPowerActive()){
             getModel().getPlayer().setPowerActive();
         }
-
         if (action == GUI.ACTION.DOWN) {
             if (!getModel().getPlayer().getHoldingBlock()) {
-                if (!getModel().getPlayer().getDirection()) {
-                    pickBlockLeft();
-                }
-                else {
-                    pickBlockRight();
-                }
+                if (!getModel().getPlayer().getDirection()) pickBlockLeft();
+                else pickBlockRight();
             }
             else {
-                if (!getModel().getPlayer().getDirection()) {
-                    dropBlockLeft();
-                }
-                else {
-                    dropBlockRight();
-                }
+                if (!getModel().getPlayer().getDirection()) dropBlockLeft();
+                else dropBlockRight();
             }
         }
 
         if(getModel().playerDead(getModel().getPlayer().getPosition())){
             game.setState(new MenuState(new Menu()));
         }
+
         if(getModel().isItem(getModel().getPlayer().getPosition())){
-            getModel().getPlayer().nextStage();
-            getModel().getPlayer().power(true);
+            pickItem(getModel().getPlayer().getPosition());
         }
-        if(getModel().getPlayer().getStage() == 4){
-            game.setState(new MenuState(new Menu()));
-        }
-        for(Enemy e : getModel().getEnemies()){
-            e.addCounter();
-        }
+
+        getModel().getPlayer().addTimer();
     }
 }
