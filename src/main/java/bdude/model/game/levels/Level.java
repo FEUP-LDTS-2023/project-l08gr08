@@ -45,6 +45,16 @@ public class Level{
         blocks.remove(temp);
     }
 
+    public void deleteItem(Position position) {
+        Item temp = null;
+
+        for(Item item: items){
+            if(item.getPosition().equals(position)) temp = item;
+        }
+
+        items.remove(temp);
+    }
+
     public void addBlock(Block block) {
         blocks.add(block);
     }
