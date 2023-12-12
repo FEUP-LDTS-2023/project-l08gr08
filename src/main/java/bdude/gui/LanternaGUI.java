@@ -66,7 +66,6 @@ public class LanternaGUI implements GUI {
         if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'q' || keyStroke.getCharacter() == 'Q')) return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'p' || keyStroke.getCharacter() == 'P')) return ACTION.POWER;
-        if (keyStroke.getKeyType() == KeyType.Escape) return ACTION.PAUSE;
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
@@ -141,5 +140,9 @@ public class LanternaGUI implements GUI {
     @Override
     public void close() throws IOException {
         screen.close();
+    }
+    @Override
+    public void drawHoldingBlock(Position position){
+        drawCharacter(position.getX()-1, position.getY(), 'M', "#E6E6FA");
     }
 }

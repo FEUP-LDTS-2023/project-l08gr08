@@ -14,6 +14,7 @@ public interface GUI {
 
     void drawBlock(Position position);
     void drawMovableBlock(Position position);
+    void drawHoldingBlock(Position position);
 
     void drawItem1(Position position);
     void drawItem2(Position position);
@@ -29,5 +30,5 @@ public interface GUI {
     void refresh() throws IOException;
     void close() throws IOException;
 
-    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, POWER, PAUSE}
+    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, POWER, RESTART}
 }

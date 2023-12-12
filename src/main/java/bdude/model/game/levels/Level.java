@@ -34,21 +34,34 @@ public class Level{
         }
         return true;
     }
+
+    public void deleteBlock(Position position){
+        Block temp = null;
+
+        for (Block block : blocks){
+            if(block.getPosition().equals(position)) temp = block;
+        }
+
+        blocks.remove(temp);
+    }
+
     public boolean isMovableBlock(Position position) {
         for(Block block : blocks){
             if(block.getPosition().equals(position) && block.isMovable()) return true;
         }
         return false;
     }
+
     public boolean isItem(Position position) {
         for(Item item : items){
             if(item.getPosition().equals(position)) return true;
         }
         return false;
     }
+
     public boolean playerDead(Position position) {
         for(Enemy e : enemies){
-            if(e.getMoveCounter() == 5 && e.getPosition().getX() == position.getX()){
+            if (e.getMoveCounter() == 5 && e.getPosition().getX() == position.getX()){
                 return true;
             }
         }
