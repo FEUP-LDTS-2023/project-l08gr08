@@ -32,9 +32,6 @@ public class PlayerController extends GameController {
         }
     }
 
-    public void movePlayerDown() {
-        movePlayer(getModel().getPlayer().getPosition().getDown());
-    }
     private void movePlayer(Position position) {
         if (getModel().isEmpty(position)) {
             getModel().getPlayer().setPosition(position);
@@ -52,9 +49,7 @@ public class PlayerController extends GameController {
         }
     }
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.DOWN) {
-            movePlayerDown();
-        }
+
         if (action == GUI.ACTION.UP) {
             movePlayerUp();
         }

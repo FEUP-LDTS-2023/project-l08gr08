@@ -12,4 +12,5 @@ public class Block extends Element {
     public void makeMovable() {
         this.movable = true;
     }
+
 }

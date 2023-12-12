@@ -50,4 +50,8 @@ public class Player extends Element {
     public void setHoldingBlock(boolean h) {
         this.holdingBlock = h;
     }
+
+    public void setBlock() {
+        setPosition(getPosition());
+    }
 }
