@@ -50,6 +50,28 @@ public class PlayerController extends GameController {
         }
     }
 
+    private void handleBlockFall() {
+        Position currentPosition = getModel().getPlayer().getPosition();
+        if (getModel().getPlayer().getDirection()) {
+            currentPosition = currentPosition.getRight();
+        }
+        else {
+            currentPosition = currentPosition.getLeft();
+
+        }
+        Position positionBelow = currentPosition.getDown();
+
+        while (getModel().isEmpty(positionBelow)) {
+            positionBelow = positionBelow.getDown();
+        }
+        Position newBlockP = positionBelow.getUp();
+        Block newBlock = new Block(newBlockP.getX() - 1, newBlockP.getY());
+        newBlock.makeMovable();
+        getModel().addBlock(newBlock);
+        getModel().getPlayer().setHoldingBlock(false);
+    }
+
+
     public void pickBlockRight(){
         Position blockPos = getModel().getPlayer().getPosition().getRight();
 
@@ -80,13 +102,15 @@ public class PlayerController extends GameController {
                 getModel().getPlayer().setHoldingBlock(false);
             }
         }
-        else {
+
+        else if (!getModel().isEmpty(blockNext.getDown())){
             Position newBlockP = currentPosition.getRight();
             Block newBlock = new Block(newBlockP.getX(), newBlockP.getY());
             newBlock.makeMovable();
             getModel().addBlock(newBlock);
             getModel().getPlayer().setHoldingBlock(false);
         }
+        else handleBlockFall();
     }
 
     public void dropBlockLeft(){
@@ -104,13 +128,14 @@ public class PlayerController extends GameController {
                 getModel().getPlayer().setHoldingBlock(false);
             }
         }
-        else {
+        else if (!getModel().isEmpty(blockNext.getDown())){
             Position newBlockP = currentPosition.getLeft();
             Block newBlock = new Block(newBlockP.getX(), newBlockP.getY());
             newBlock.makeMovable();
             getModel().addBlock(newBlock);
             getModel().getPlayer().setHoldingBlock(false);
         }
+        else handleBlockFall();
     }
 
     public void step(Game game, GUI.ACTION action, long time) {
