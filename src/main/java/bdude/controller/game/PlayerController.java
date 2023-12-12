@@ -17,18 +17,34 @@ public class PlayerController extends GameController {
         super(level);
     }
     public void movePlayerLeft() {
-        movePlayer(getModel().getPlayer().getPosition().getLeft());
-        handlePlayerFall();
+        if (getModel().getPlayer().getHoldingBlock()) {
+            if (getModel().isEmpty(getModel().getPlayer().getPosition().getUp2())) {
+                movePlayer(getModel().getPlayer().getPosition().getLeft());
+                handlePlayerFall();
+            }
+        }
+        else {
+            movePlayer(getModel().getPlayer().getPosition().getLeft());
+            handlePlayerFall();
+        }
+
     }
 
     public void movePlayerRight() {
-        movePlayer(getModel().getPlayer().getPosition().getRight());
-        handlePlayerFall();
+        if (getModel().getPlayer().getHoldingBlock()) {
+            if (getModel().isEmpty(getModel().getPlayer().getPosition().getUp())) {
+                movePlayer(getModel().getPlayer().getPosition().getRight());
+                handlePlayerFall();
+            }
+        }
+        else {
+            movePlayer(getModel().getPlayer().getPosition().getRight());
+            handlePlayerFall();
+        }
+
     }
 
     public void movePlayerUp() {
-
-
         Position currentPosition = getModel().getPlayer().getPosition();
         Position positionAbove = currentPosition.getUp();
         Position positionLR = currentPosition.getRight();
@@ -165,7 +181,7 @@ public class PlayerController extends GameController {
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.UP && !getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY()+1))) {
+        if (action == GUI.ACTION.UP && !getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY()+1)) && getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY() - 1))) {
             movePlayerUp();
             getModel().getPlayer().addCounter();
         }
