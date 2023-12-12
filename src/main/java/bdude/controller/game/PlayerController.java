@@ -24,6 +24,8 @@ public class PlayerController extends GameController {
     }
 
     public void movePlayerUp() {
+
+
         Position currentPosition = getModel().getPlayer().getPosition();
         Position positionAbove = currentPosition.getUp();
         Position positionLR = currentPosition.getRight();
