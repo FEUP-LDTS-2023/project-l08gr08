@@ -8,14 +8,14 @@ public class Controls {
     private int currentEntry = 0;
     public Controls() {
         this.entries = Arrays.asList(
-                "Arrow Left -> Move to the left",
-                "Arrow Right -> Move to the right",
-                "Arrow Up -> Jump one Block",
-                "Arrow Down -> Pick up Block",
-                "Arrow Down -> Drop Block",
-                "P -> Activate Power",
-                "Q -> Close Level",
-                "Go Back"
+                "ARROW LEFT -> MOVE TO THE LEFT",
+                "ARROW RIGHT -> MOVE TO THE RIGHT",
+                "ARROW UP -> JUMP ONE BLOCK",
+                "ARROW DOWN -> PICK UP BLOCK",
+                "ARROW DOWN -> DROP BLOCK",
+                "P -> ACTIVATE POWER",
+                "Q -> CLOSE LEVEL",
+                "GO BACK"
         );
     }
     public void nextEntry() {

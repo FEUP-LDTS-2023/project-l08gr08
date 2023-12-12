@@ -3,7 +3,10 @@ package bdude.controller.game;
 import bdude.Game;
 import bdude.gui.GUI;
 import bdude.model.Position;
+import bdude.model.game.elements.Enemy;
 import bdude.model.game.levels.Level;
+import bdude.model.menu.Menu;
+import bdude.states.MenuState;
 
 public class PlayerController extends GameController {
     public PlayerController(Level level) {
@@ -70,9 +73,11 @@ public class PlayerController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.UP) {
             movePlayerUp();
+            getModel().getPlayer().addCounter();
         }
         if (action == GUI.ACTION.LEFT && !getModel().getPlayer().getDirection()) {
             movePlayerLeft();
+            getModel().getPlayer().addCounter();
         }
         if (action == GUI.ACTION.RIGHT && getModel().getPlayer().getDirection()) {
             movePlayerRight();
@@ -97,6 +102,20 @@ public class PlayerController extends GameController {
         }
         if (action == GUI.ACTION.DOWN && !getModel().getPlayer().getDirection() && getModel().getPlayer().getHoldingBlock()){
             // dropBlockLeft();
+        }
+
+        if(getModel().playerDead(getModel().getPlayer().getPosition())){
+            game.setState(new MenuState(new Menu()));
+        }
+        if(getModel().isItem(getModel().getPlayer().getPosition())){
+            getModel().getPlayer().nextStage();
+            getModel().getPlayer().power(true);
+        }
+        if(getModel().getPlayer().getStage() == 4){
+            game.setState(new MenuState(new Menu()));
+        }
+        for(Enemy e : getModel().getEnemies()){
+            e.addCounter();
         }
     }
 }

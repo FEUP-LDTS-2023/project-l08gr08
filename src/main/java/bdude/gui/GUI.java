@@ -21,6 +21,7 @@ public interface GUI {
     void drawItem3(Position position);
 
     void drawEnemy(Position position);
+    void drawEnemyRay(Position position);
 
     void drawWall(Position position);
 

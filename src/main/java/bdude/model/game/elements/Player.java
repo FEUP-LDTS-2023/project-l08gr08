@@ -1,6 +1,7 @@
 package bdude.model.game.elements;
 
 public class Player extends Element {
+    private int moveCounter = 0;
     private int stage = 1;                // Guarda o "Estágio // Nível do Herói // 1 -> 2 -> 3 //
     private boolean direction = true;     // true -> direita // false -> esquerda //
     private boolean power = false;        // true -> pode usar poder // falso -> não pode //
@@ -16,12 +17,16 @@ public class Player extends Element {
         return stage;
     }
     public void nextStage() {
-        if (stage == 3) {
-            stage = 1;
-        } else stage++;
+        stage++;
     }
 
     //
+    public void addCounter(){
+        moveCounter++;
+    }
+    public int getMoveCounter(){
+        return moveCounter;
+    }
     public boolean getDirection() {
         return direction;
     }
@@ -33,7 +38,7 @@ public class Player extends Element {
     public boolean getPower() {
         return power;
     }
-    public void Power(boolean a) {
+    public void power(boolean a) {
         this.power = a;
     }
     public boolean getPowerActive() {

@@ -67,6 +67,7 @@ public class Level{
         }
         return false;
     }
+
     // Setters //
     public void setPlayer(Player a){
         this.player = a;

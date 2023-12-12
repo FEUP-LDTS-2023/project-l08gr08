@@ -11,7 +11,6 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -74,48 +73,57 @@ public class LanternaGUI implements GUI {
         return ACTION.NONE;
     }
 
+    int desvio = 2;
     @Override
     public void drawPlayer(Position position) {
-        drawCharacter(position.getX(), position.getY(), '>', "#FFD700");
+        drawCharacter(position.getX(), position.getY() + desvio, '>', "#FFD700");
     }
     @Override
     public void drawPlayer2(Position position) {
-        drawCharacter(position.getX(), position.getY(), '<', "#FFD700");
+        drawCharacter(position.getX(), position.getY() + desvio, '<', "#FFD700");
     }
     @Override
     public void drawPlayerPower(Position position) {
-        drawCharacter(position.getX(), position.getY(), '»', "#FFD700");
+        drawCharacter(position.getX(), position.getY() + desvio, '»', "#FFD700");
     }
     @Override
     public void drawPlayerPower2(Position position) {
-        drawCharacter(position.getX(), position.getY(), '«', "#FFD700");
+        drawCharacter(position.getX(), position.getY() + 1, '«', "#FFD700");
     }
     @Override
     public void drawBlock(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'B', "#3333FF");
+        drawCharacter(position.getX(), position.getY() + desvio, 'B', "#3333FF");
     }
     public void drawMovableBlock(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'M', "#E6E6FA");
+        drawCharacter(position.getX(), position.getY() + desvio, 'M', "#E6E6FA");
+    }
+    @Override
+    public void drawHoldingBlock(Position position){
+        drawCharacter(position.getX()-1, position.getY() + desvio, 'M', "#E6E6FA");
     }
     @Override
     public void drawEnemy(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'E', "#CC0000");
+        drawCharacter(position.getX(), position.getY() + desvio, 'E', "#CC0000");
+    }
+    @Override
+    public void drawEnemyRay(Position position) {
+        drawCharacter(position.getX(), position.getY() + desvio, '/', "#CC0000");
     }
     @Override
     public void drawItem1(Position position) {
-        drawCharacter(position.getX(), position.getY(), '1', "#00FF00");
+        drawCharacter(position.getX(), position.getY() + desvio, '1', "#00FF00");
     }
     @Override
     public void drawItem2(Position position) {
-        drawCharacter(position.getX(), position.getY(), '2', "#00FF00");
+        drawCharacter(position.getX(), position.getY() + desvio, '2', "#00FF00");
     }
     @Override
     public void drawItem3(Position position) {
-        drawCharacter(position.getX(), position.getY(), '3', "#00FF00");
+        drawCharacter(position.getX(), position.getY() + desvio, '3', "#00FF00");
     }
     @Override
     public void drawWall(Position position) {
-        drawCharacter(position.getX(), position.getY(), '#', "#ABCABC");
+        drawCharacter(position.getX(), position.getY() + desvio , '#', "#FFFFFF");
     }
     @Override
     public void drawText(Position position, String text, String color) {
@@ -126,7 +134,7 @@ public class LanternaGUI implements GUI {
     private void drawCharacter(int x, int y, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(x, y + 1, "" + c);
+        tg.putString(x, y + desvio, "" + c);
     }
 
     @Override
@@ -140,9 +148,5 @@ public class LanternaGUI implements GUI {
     @Override
     public void close() throws IOException {
         screen.close();
-    }
-    @Override
-    public void drawHoldingBlock(Position position){
-        drawCharacter(position.getX()-1, position.getY(), 'M', "#E6E6FA");
     }
 }
