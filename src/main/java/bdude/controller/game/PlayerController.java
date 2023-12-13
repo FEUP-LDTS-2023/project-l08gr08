@@ -7,8 +7,10 @@ import bdude.model.game.elements.Block;
 import bdude.model.game.elements.Enemy;
 import bdude.model.game.levels.Level;
 import bdude.model.game.levels.LevelReadBuilder;
+import bdude.model.menu.LevelCleared;
 import bdude.model.menu.Menu;
 import bdude.states.GameState;
+import bdude.states.LevelClearedState;
 import bdude.states.MenuState;
 
 import java.io.IOException;
@@ -249,6 +251,7 @@ public class PlayerController extends GameController {
 
         if(getModel().getItems().isEmpty()){
             game.setState(new MenuState(new Menu()));
+            game.setState(new LevelClearedState(new LevelCleared(getModel().getInp())));
         }
     }
 }
