@@ -26,7 +26,6 @@ public class Player extends Element {
         this.lives = a;
      }
 
-
     public int getLives(){
         return lives;
     }

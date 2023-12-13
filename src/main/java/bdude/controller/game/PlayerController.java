@@ -4,13 +4,14 @@ import bdude.Game;
 import bdude.gui.GUI;
 import bdude.model.Position;
 import bdude.model.game.elements.Block;
-import bdude.model.game.elements.Enemy;
 import bdude.model.game.levels.Level;
 import bdude.model.game.levels.LevelReadBuilder;
 import bdude.model.menu.LevelCleared;
+import bdude.model.menu.LevelNotCleared;
 import bdude.model.menu.Menu;
 import bdude.states.GameState;
 import bdude.states.LevelClearedState;
+import bdude.states.LevelNotClearedState;
 import bdude.states.MenuState;
 
 import java.io.IOException;
@@ -93,6 +94,7 @@ public class PlayerController extends GameController {
             positionBelow = positionBelow.getDown();
         }
     }
+
 
     private void handleBlockFall() {
         Position currentPosition = getModel().getPlayer().getPosition();
@@ -201,27 +203,36 @@ public class PlayerController extends GameController {
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
+        getModel().changeEnemies();
+
         if (action == GUI.ACTION.UP && !getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY()+1)) && getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getX(), getModel().getPlayer().getPosition().getY() - 1))) {
             movePlayerUp();
             getModel().getPlayer().addCounter();
+            getModel().incrementEnemyCounter();
         }
         if (action == GUI.ACTION.LEFT && !getModel().getPlayer().getDirection()) {
             movePlayerLeft();
             getModel().getPlayer().addCounter();
+            getModel().incrementEnemyCounter();
         }
         if (action == GUI.ACTION.RIGHT && getModel().getPlayer().getDirection()) {
             movePlayerRight();
             getModel().getPlayer().addCounter();
+            getModel().incrementEnemyCounter();
         }
+
         if (action == GUI.ACTION.LEFT && getModel().getPlayer().getDirection()) {
             getModel().getPlayer().switchDirection();
         }
+
         if (action == GUI.ACTION.RIGHT && !getModel().getPlayer().getDirection()) {
             getModel().getPlayer().switchDirection();
         }
+
         if (action == GUI.ACTION.POWER && getModel().getPlayer().getPower() && !getModel().getPlayer().getPowerActive()){
             getModel().getPlayer().setPowerActive();
         }
+
         if (action == GUI.ACTION.DOWN) {
             if (!getModel().getPlayer().getHoldingBlock()) {
                 if (!getModel().getPlayer().getDirection()) pickBlockLeft();
@@ -232,26 +243,27 @@ public class PlayerController extends GameController {
                 else dropBlockRight();
             }
         }
+
         if (action == GUI.ACTION.RESTART){
             int lives = getModel().getPlayer().getLives();
-            if(lives == 1){ game.setState(new MenuState(new Menu())); }
+            if(lives == 1){  game.setState(new LevelNotClearedState(new LevelNotCleared(getModel().getInp())));}
             else game.setState(new GameState(new LevelReadBuilder(getModel().getInp(), lives - 1).createLevel()));
         }
 
         if (action == GUI.ACTION.SELECT && getModel().getPlayer().getPowerActive()){
             breakBlock(getModel().getPlayer().getPosition());
         }
-
-        if(getModel().playerDead(getModel().getPlayer().getPosition())){
-            game.setState(new MenuState(new Menu()));
-        }
         if(getModel().isItem(getModel().getPlayer().getPosition())){
             pickItem(getModel().getPlayer().getPosition());
         }
-
-        if(getModel().getItems().isEmpty()){
+        if(getModel().getItems().isEmpty()) {
             game.setState(new MenuState(new Menu()));
             game.setState(new LevelClearedState(new LevelCleared(getModel().getInp())));
+        }
+        if(getModel().playerDead(getModel().getPlayer().getPosition())){
+            int lives = getModel().getPlayer().getLives();
+            if(lives == 1){  game.setState(new LevelNotClearedState(new LevelNotCleared(getModel().getInp())));}
+            else game.setState(new GameState(new LevelReadBuilder(getModel().getInp(), lives - 1).createLevel()));
         }
     }
 }
