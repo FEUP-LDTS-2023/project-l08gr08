@@ -10,7 +10,8 @@ public class LevelCleared {
 
     public LevelCleared(int inp) {
         this.inp = inp;
-        this.entries = Arrays.asList("GO TO NEXT LEVEL ", "GO BACK TO MENU");
+        this.entries = Arrays.asList("GO TO NEXT LEVEL ",
+                                     " RETURN TO MENU  ");
     }
     public void nextEntry() {
         currentEntry++;

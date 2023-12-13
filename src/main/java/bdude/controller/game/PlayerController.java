@@ -223,10 +223,14 @@ public class PlayerController extends GameController {
 
         if (action == GUI.ACTION.LEFT && getModel().getPlayer().getDirection()) {
             getModel().getPlayer().switchDirection();
+            getModel().getPlayer().addCounter();
+            getModel().incrementEnemyCounter();
         }
 
         if (action == GUI.ACTION.RIGHT && !getModel().getPlayer().getDirection()) {
             getModel().getPlayer().switchDirection();
+            getModel().getPlayer().addCounter();
+            getModel().incrementEnemyCounter();
         }
 
         if (action == GUI.ACTION.POWER && getModel().getPlayer().getPower() && !getModel().getPlayer().getPowerActive()){
@@ -242,6 +246,8 @@ public class PlayerController extends GameController {
                 if (!getModel().getPlayer().getDirection()) dropBlockLeft();
                 else dropBlockRight();
             }
+            getModel().getPlayer().addCounter();
+            getModel().incrementEnemyCounter();
         }
 
         if (action == GUI.ACTION.RESTART){

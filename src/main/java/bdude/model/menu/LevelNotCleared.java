@@ -10,8 +10,7 @@ public class LevelNotCleared {
 
     public LevelNotCleared(int inp) {
         this.inp = inp;
-        this.entries = Arrays.asList(" RESTART LEVEL ",
-                                     "GO BACK TO MENU");
+        this.entries = Arrays.asList("  RESTART LEVEL ", " RETURN TO MENU");
     }
     public void nextEntry() {
         currentEntry++;
