@@ -16,6 +16,13 @@ public class GameViewer extends Viewer<Level> {
     @Override
     protected void drawElements(GUI gui) {
         gui.drawText(new Position(0, 0), "#############################################", "#FFFFFF");
+        gui.drawText(new Position(0, 39), "#############################################", "#FFFFFF");
+        for(int i = 0; i < 45; i++){
+            gui.drawText(new Position(0, i), "#", "#FFFFFF");
+            gui.drawText(new Position(44, i), "#", "#FFFFFF");
+        }
+
+        gui.drawText(new Position(0, 0), "#############################################", "#FFFFFF");
         gui.drawText(new Position(44,1), "#", "#FFFFFF");
         gui.drawText(new Position(44,2), "#", "#FFFFFF");
         gui.drawText(new Position(44,3), "#", "#FFFFFF");
@@ -38,8 +45,8 @@ public class GameViewer extends Viewer<Level> {
             color2 = "#ff0000";
         }
 
-        gui.drawText(new Position(29,2), "LIVES:", color2);
-        gui.drawText(new Position(36, 2), result2, color2);
+        gui.drawText(new Position(32,2), "LIVES:", color2);
+        gui.drawText(new Position(39, 2), result2, color2);
 
 
         gui.drawText(new Position(25,2), Integer.toString(getModel().getInp()), "#ffe600");
@@ -52,9 +59,9 @@ public class GameViewer extends Viewer<Level> {
         gui.drawText(new Position(2, 2), "POKE - DUDE", "#db0404");
         gui.drawText(new Position(0, 3), "#              #", "#FFFFFF");
         gui.drawText(new Position(0, 17), "#                   #", "#FFFFFF");
-        gui.drawText(new Position(0,18), "# MOVE COUNTER:", "#FFFFFF");
+        gui.drawText(new Position(2,18), "MOVE COUNTER:", "#ff4800");
 
-        gui.drawText(new Position(22,18), "STAGE:", "#FFFFFF");
+        gui.drawText(new Position(22,18), "STAGE:", "#ff4800");
         gui.drawText(new Position(20,18), "#", "#FFFFFF");
         gui.drawText(new Position(29,18), Integer.toString(getModel().getPlayer().getStage()), "#0000FF");
 
@@ -70,7 +77,7 @@ public class GameViewer extends Viewer<Level> {
         }
         gui.drawText(new Position(40,18), result, color);
 
-        gui.drawText(new Position(33,18), "POWER:", "#FFFFFF");
+        gui.drawText(new Position(33,18), "POWER:", "#ff4800");
         gui.drawText(new Position(31,18), "#", "#FFFFFF");
         gui.drawText(new Position(31,19), "#", "#FFFFFF");
         gui.drawText(new Position(31,17), "#", "#FFFFFF");
@@ -80,7 +87,7 @@ public class GameViewer extends Viewer<Level> {
         gui.drawText(new Position(44, 18), "#", "#FFFFFF");
         gui.drawText(new Position(44, 17), "#", "#FFFFFF");
         gui.drawText(new Position(0, 20), "#############################################", "#FFFFFF");
-        gui.drawText(new Position(16,18), Integer.toString(getModel().getPlayer().getMoveCounter()), "#ffe600");
+        gui.drawText(new Position(17,18), Integer.toString(getModel().getPlayer().getMoveCounter()), "#ffe600");
 
         drawElement(gui, getModel().getPlayer(), new PlayerViewer());
         drawElements(gui, getModel().getEnemies(), new EnemyViewer());

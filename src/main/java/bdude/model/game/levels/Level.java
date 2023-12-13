@@ -26,6 +26,22 @@ public class Level{
         this.height = height;
     }
 
+    public void incrementEnemyCounter(){
+        for (Enemy e : enemies){
+            e.addCounter();
+        }
+    }
+
+    public void changeEnemies() {
+        for (Enemy e : enemies) {
+            int tempY = e.getPosition().getY() + 1;
+
+            while (isEmpty(new Position(e.getPosition().getX(), tempY))) {
+                e.setLastY(tempY);
+                tempY++;
+            }
+        }
+    }
 
     public boolean isEmpty(Position position){
         for(Wall wall : walls){
@@ -56,6 +72,7 @@ public class Level{
 
         items.remove(temp);
     }
+
 
     public void addBlock(Block block) {
         blocks.add(block);
@@ -118,8 +135,6 @@ public class Level{
     public List<Wall> getWalls() {
         return walls;
     }
-
-
     public int getInp() {
         return inp;
     }

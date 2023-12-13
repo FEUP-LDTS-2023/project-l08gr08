@@ -3,15 +3,14 @@ package bdude.model.menu;
 import java.util.Arrays;
 import java.util.List;
 
-public class LevelCleared {
+public class LevelNotCleared {
     private final List<String> entries;
     private int currentEntry = 0;
     private int inp = 0;
 
-    public LevelCleared(int inp) {
+    public LevelNotCleared(int inp) {
         this.inp = inp;
-        this.entries = Arrays.asList("GO TO NEXT LEVEL ",
-                                     " RETURN TO MENU  ");
+        this.entries = Arrays.asList("  RESTART LEVEL ", " RETURN TO MENU");
     }
     public void nextEntry() {
         currentEntry++;

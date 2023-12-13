@@ -12,6 +12,15 @@ public class ControlsViewer extends Viewer<Controls> {
 
     @Override
     protected void drawElements(GUI gui) {
+
+        gui.drawText(new Position(17, 5), "POKE - DUDE", "#db0404");
+        gui.drawText(new Position(0, 0), "#############################################", "#FFFFFF");
+        gui.drawText(new Position(0, 39), "#############################################", "#FFFFFF");
+        for(int i = 0; i < 45; i++){
+            gui.drawText(new Position(0, i), "#", "#FFFFFF");
+            gui.drawText(new Position(44, i), "#", "#FFFFFF");
+        }
+
         gui.drawText(new Position(15, 4), "#             #", "#ffffff");
         gui.drawText(new Position(15, 5), "#             #", "#ffffff");
         gui.drawText(new Position(29, 5), "#", "#ffffff");

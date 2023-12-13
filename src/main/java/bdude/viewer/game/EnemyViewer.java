@@ -9,12 +9,9 @@ public class EnemyViewer implements ElementViewer<Enemy> {
     public void draw(Enemy enemy, GUI gui) {
         gui.drawEnemy(enemy.getPosition());
 
-        int newY = enemy.getPosition().getY() + 1;
-
-        if (enemy.getMoveCounter() == 5) {
-            while(newY > enemy.getLastY()){
-                gui.drawEnemyRay(new Position(enemy.getPosition().getX(), newY));
-                newY--;
+        if (enemy.getMoveCounter() == 5){
+            for (int i = enemy.getPosition().getY() + 1; i <= enemy.getLastY(); i++){
+                gui.drawEnemyRay(new Position(enemy.getPosition().getX(), i));
             }
         }
     }

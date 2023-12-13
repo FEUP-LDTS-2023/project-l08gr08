@@ -1,5 +1,6 @@
 package bdude.model.game.levels;
 
+import bdude.model.Position;
 import bdude.model.game.elements.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -63,16 +64,6 @@ public class LevelReadBuilder extends LevelBuilder {
         return blocks;
     }
     @Override
-    protected List<Enemy> createEnemies() {
-        List<Enemy> enemies = new ArrayList<>();
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'E') enemies.add(new Enemy(x, y));
-        }
-        return enemies;
-    }
-    @Override
     protected List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
@@ -126,5 +117,15 @@ public class LevelReadBuilder extends LevelBuilder {
             }
         }
         return null;
+    }
+    @Override
+    protected List<Enemy> createEnemies() {
+        List<Enemy> enemies = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++)
+                if (line.charAt(x) == 'E') enemies.add(new Enemy(x, y));
+        }
+        return enemies;
     }
 }
