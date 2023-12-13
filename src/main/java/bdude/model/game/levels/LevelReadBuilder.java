@@ -10,17 +10,18 @@ import java.util.List;
 
 public class LevelReadBuilder extends LevelBuilder {
     private final int level;
+    private final int lives;
     private final List<String> lines;
 
-    public LevelReadBuilder(int level) throws IOException {
+    public LevelReadBuilder(int level, int lives) throws IOException {
         this.level = level;
+        this.lives = lives;
 
         URL resource = LevelReadBuilder.class.getResource("/levels/NIVEL" + level + ".lvl");
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
         lines = readLines(br);
     }
-
     private List<String> readLines(BufferedReader br) throws IOException {
         List<String> lines = new ArrayList<>();
         for (String line; (line = br.readLine()) != null;)
@@ -112,11 +113,14 @@ public class LevelReadBuilder extends LevelBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == '>') {
-                    return new Player(x, y);
+                    Player p = new Player(x,y);
+                    p.setLives(lives);
+                    return p;
                 }
                 else if (line.charAt(x) == '<') {
                     Player temp = new Player(x,y);
                     temp.switchDirection();
+                    temp.setLives(lives);
                     return temp;
                 }
             }

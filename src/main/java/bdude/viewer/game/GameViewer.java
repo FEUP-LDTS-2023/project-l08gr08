@@ -19,8 +19,34 @@ public class GameViewer extends Viewer<Level> {
         gui.drawText(new Position(44,1), "#", "#FFFFFF");
         gui.drawText(new Position(44,2), "#", "#FFFFFF");
         gui.drawText(new Position(44,3), "#", "#FFFFFF");
-        gui.drawText(new Position(25,2), "LEVEL - ", "#ffe600");
-        gui.drawText(new Position(33,2), Integer.toString(getModel().getInp()), "#ffe600");
+
+        gui.drawText(new Position(17,2), "LEVEL - ", "#ffe600");
+
+
+        String result2 = null;
+        String color2 = null;
+        if (getModel().getPlayer().getLives() == 3){
+            result2 = "3";
+            color2 = "#00FF00";
+        }
+        if (getModel().getPlayer().getLives() == 2){
+            result2 = "2";
+            color2 = "#ffe600";
+        }
+        if (getModel().getPlayer().getLives() == 1){
+            result2 = "1";
+            color2 = "#ff0000";
+        }
+
+        gui.drawText(new Position(29,2), "LIVES:", color2);
+        gui.drawText(new Position(36, 2), result2, color2);
+
+
+        gui.drawText(new Position(25,2), Integer.toString(getModel().getInp()), "#ffe600");
+        gui.drawText(new Position(27,2), "#", "#FFFFFF");
+        gui.drawText(new Position(27,3), "#", "#FFFFFF");
+        gui.drawText(new Position(27,1), "#", "#FFFFFF");
+
         gui.drawText(new Position(0, 1), "#              #", "#FFFFFF");
         gui.drawText(new Position(0, 2), "#              #", "#FFFFFF");
         gui.drawText(new Position(2, 2), "POKE - DUDE", "#db0404");

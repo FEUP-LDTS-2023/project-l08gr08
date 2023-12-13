@@ -72,7 +72,6 @@ public class LanternaGUI implements GUI {
         if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;
         if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'r' || keyStroke.getCharacter() == 'R')) return ACTION.RESTART;
 
-
         return ACTION.NONE;
     }
 
@@ -110,7 +109,7 @@ public class LanternaGUI implements GUI {
     }
     @Override
     public void drawEnemyRay(Position position) {
-        drawCharacter(position.getX(), position.getY() + desvio, '/', "#CC0000");
+        drawCharacter(position.getX(), position.getY() + desvio, '*', "#de34eb");
     }
     @Override
     public void drawItem1(Position position) {

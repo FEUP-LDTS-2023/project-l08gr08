@@ -26,9 +26,9 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedLevel1()) game.setState(new GameState(new LevelReadBuilder(1).createLevel()));
-                if (getModel().isSelectedLevel2()) game.setState(new GameState(new LevelReadBuilder(2).createLevel()));
-                if (getModel().isSelectedLevel3()) game.setState(new GameState(new LevelReadBuilder(3).createLevel()));
+                if (getModel().isSelectedLevel1()) game.setState(new GameState(new LevelReadBuilder(1,3).createLevel()));
+                if (getModel().isSelectedLevel2()) game.setState(new GameState(new LevelReadBuilder(1,3).createLevel()));
+                if (getModel().isSelectedLevel3()) game.setState(new GameState(new LevelReadBuilder(1,3).createLevel()));
                 if (getModel().isSelectedControls()) game.setState(new ControlsState(new Controls()));
         }
     }

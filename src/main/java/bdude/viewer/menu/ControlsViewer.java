@@ -20,7 +20,7 @@ public class ControlsViewer extends Viewer<Controls> {
         for (int i = 0; i < getModel().getNumberEntries() - 1; i++) {
             gui.drawText(new Position(8,  9 + 2 * i),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+                    getModel().isSelected(i) ? "#FFD700" : "#00FF00");
         }
         for (int i = 5; i < 42; i++){
             gui.drawText(new Position(i,7), "#", "#ffffff");

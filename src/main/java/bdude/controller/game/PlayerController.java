@@ -4,6 +4,7 @@ import bdude.Game;
 import bdude.gui.GUI;
 import bdude.model.Position;
 import bdude.model.game.elements.Block;
+import bdude.model.game.elements.Enemy;
 import bdude.model.game.levels.Level;
 import bdude.model.game.levels.LevelReadBuilder;
 import bdude.model.menu.Menu;
@@ -195,11 +196,15 @@ public class PlayerController extends GameController {
             }
         }
         if (action == GUI.ACTION.RESTART){
-            game.setState(new GameState(new LevelReadBuilder(getModel().getInp()).createLevel()));
+            int lives = getModel().getPlayer().getLives();
+            if(lives == 1){ game.setState(new MenuState(new Menu())); }
+            else game.setState(new GameState(new LevelReadBuilder(getModel().getInp(), lives - 1).createLevel()));
         }
-        if (action == GUI.ACTION.SELECT){
+
+        if (action == GUI.ACTION.SELECT && getModel().getPlayer().getPowerActive()){
             breakBlock(getModel().getPlayer().getPosition());
         }
+
         if(getModel().playerDead(getModel().getPlayer().getPosition())){
             game.setState(new MenuState(new Menu()));
         }
@@ -207,6 +212,8 @@ public class PlayerController extends GameController {
             pickItem(getModel().getPlayer().getPosition());
         }
 
-        getModel().getPlayer().addTimer();
+        if(getModel().getItems().isEmpty()){
+            game.setState(new MenuState(new Menu()));
+        }
     }
 }

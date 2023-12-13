@@ -6,13 +6,21 @@ public class Enemy extends Element {
         super(x, y);
     }
 
+    private int lastY = 1;
+
     Random random = new Random();
-    private int moveCounter = random.nextInt(4);
+    private int moveCounter = random.nextInt(3);
 
     public void addCounter() {
         if (moveCounter == 5) {
             moveCounter = 0;
         } else moveCounter++;
+    }
+    public void setLastY(int a){
+        this.lastY = a;
+    }
+    public int getLastY(){
+        return lastY;
     }
 
     public int getMoveCounter() {
