@@ -45,16 +45,33 @@ public class PlayerController extends GameController {
     }
 
     public void movePlayerUp() {
-        Position currentPosition = getModel().getPlayer().getPosition();
-        Position positionAbove = currentPosition.getUp();
-        Position positionLR = currentPosition.getRight();
+        if (getModel().getPlayer().getHoldingBlock()) {
+            if (getModel().isEmpty(new Position(getModel().getPlayer().getPosition().getUp().getX(), getModel().getPlayer().getPosition().getUp().getY()-1))) {
+                Position currentPosition = getModel().getPlayer().getPosition();
+                Position positionAbove = currentPosition.getUp();
+                Position positionLR = currentPosition.getRight();
 
-        if (!getModel().getPlayer().getDirection()) {
-            positionAbove = currentPosition.getUp2();
-            positionLR = currentPosition.getLeft();
+                if (!getModel().getPlayer().getDirection()) {
+                    positionAbove = currentPosition.getUp2();
+                    positionLR = currentPosition.getLeft();
+                }
+                if (getModel().isEmpty(positionAbove) && !getModel().isEmpty(positionLR)) {
+                    getModel().getPlayer().setPosition(positionAbove);
+                }
+            }
         }
-        if (getModel().isEmpty(positionAbove) && !getModel().isEmpty(positionLR)) {
-            getModel().getPlayer().setPosition(positionAbove);
+        else {
+            Position currentPosition = getModel().getPlayer().getPosition();
+            Position positionAbove = currentPosition.getUp();
+            Position positionLR = currentPosition.getRight();
+
+            if (!getModel().getPlayer().getDirection()) {
+                positionAbove = currentPosition.getUp2();
+                positionLR = currentPosition.getLeft();
+            }
+            if (getModel().isEmpty(positionAbove) && !getModel().isEmpty(positionLR)) {
+                getModel().getPlayer().setPosition(positionAbove);
+            }
         }
     }
 
