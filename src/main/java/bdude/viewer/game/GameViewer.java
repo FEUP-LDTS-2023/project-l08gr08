@@ -38,8 +38,8 @@ public class GameViewer extends Viewer<Level> {
             color2 = "#ff0000";
         }
 
-        gui.drawText(new Position(29,2), "LIVES:", color2);
-        gui.drawText(new Position(36, 2), result2, color2);
+        gui.drawText(new Position(32,2), "LIVES:", color2);
+        gui.drawText(new Position(39, 2), result2, color2);
 
 
         gui.drawText(new Position(25,2), Integer.toString(getModel().getInp()), "#ffe600");
