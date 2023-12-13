@@ -11,7 +11,7 @@ public class EnemyViewer implements ElementViewer<Enemy> {
 
         int newY = enemy.getPosition().getY() + 1;
 
-        if (enemy.getMoveCounter() == 5){
+        if (enemy.getMoveCounter() == 5) {
             while(newY > enemy.getLastY()){
                 gui.drawEnemyRay(new Position(enemy.getPosition().getX(), newY));
                 newY--;
