@@ -61,9 +61,9 @@ public class GameViewer extends Viewer<Level> {
         gui.drawText(new Position(0, 17), "#                   #", "#FFFFFF");
         gui.drawText(new Position(2,18), "MOVE COUNTER:", "#ff4800");
 
-        gui.drawText(new Position(22,18), "STAGE:", "#ff4800");
+        gui.drawText(new Position(22,18), "STAGE:", "#44FF44");
         gui.drawText(new Position(20,18), "#", "#FFFFFF");
-        gui.drawText(new Position(29,18), Integer.toString(getModel().getPlayer().getStage()), "#0000FF");
+        gui.drawText(new Position(29,18), Integer.toString(getModel().getPlayer().getStage()), "#02ccfe");
 
         String result = null;
         String color = null;
