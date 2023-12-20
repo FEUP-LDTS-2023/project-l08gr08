@@ -1,98 +1,196 @@
 package bdude.GUI;
 
+import static org.mockito.Mockito.*;
+
 import bdude.gui.LanternaGUI;
 import bdude.model.Position;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+class LanternaGUITest {
 
-public class LanternaGUITest {
-
-    @InjectMocks
-    private LanternaGUI gui;
-
-    @Mock
-    private Screen screen;
-
-    @Mock
-    private TextGraphics tg;
+    private LanternaGUI lanternaGUI;
+    private Screen mockScreen;
+    private TextGraphics mockTextGraphics;
 
     @BeforeEach
     void setUp() throws IOException {
-        screen = Mockito.mock(Screen.class);
-        tg = Mockito.mock(TextGraphics.class);
+        mockScreen = mock(Screen.class);
+        mockTextGraphics = mock(TextGraphics.class);
+        when(mockScreen.newTextGraphics()).thenReturn(mockTextGraphics);
+        lanternaGUI = new LanternaGUI(mockScreen);
+    }
 
-        Mockito.when(screen.newTextGraphics()).thenReturn(tg);
+    @AfterEach
+    void tearDown() throws IOException {
+        lanternaGUI.close();
     }
 
     @Test
-    void drawPlayer() throws IOException {
-        Position position = new Position(1, 1);
-        gui.drawPlayer(position);
+    void drawPlayerTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 4);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, " >");
+        // Act
+        lanternaGUI.drawPlayer(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
+        verify(mockTextGraphics).putString(eq(1), eq(8), eq(">"));
+
     }
 
     @Test
-    void drawPlayer2() {
-        Position position = new Position(1, 1);
-        gui.drawPlayer2(position);
+    void drawPlayer2Test() throws IOException {
+        // Arrange
+        Position position = new Position(1, 5);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, " <");
+        // Act
+        lanternaGUI.drawPlayer2(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
+        verify(mockTextGraphics).putString(eq(1), eq(9), eq("<"));
+
     }
 
     @Test
-    void drawPlayerPower() {
-        Position position = new Position(1, 1);
-        gui.drawPlayerPower(position);
+    void drawPlayerPowerTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 2);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, "»");
+        // Act
+        lanternaGUI.drawPlayerPower(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
+        verify(mockTextGraphics).putString(eq(1), eq(6), eq("»"));
+
     }
 
     @Test
-    void drawPlayerPower2() {
-        Position position = new Position(1, 1);
-        gui.drawPlayerPower2(position);
+    void drawPlayerPower2Test() throws IOException {
+        // Arrange
+        Position position = new Position(1, 2);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, "«");
+        // Act
+        lanternaGUI.drawPlayerPower2(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#FFD700"));
+        verify(mockTextGraphics).putString(eq(1), eq(6), eq("«"));
+
     }
 
     @Test
-    void drawBlock() {
-        Position position = new Position(1, 1);
-        gui.drawBlock(position);
+    void drawBlockTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 10);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#3333FF"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, "B");
+        // Act
+        lanternaGUI.drawBlock(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#3333FF"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("B"));
+
     }
 
     @Test
-    void drawMovableBlock() {
-        Position position = new Position(1, 1);
-        gui.drawMovableBlock(position);
+    void drawMovableBlockTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 10);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#E6E6FA"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, "M");
+        // Act
+        lanternaGUI.drawMovableBlock(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#E6E6FA"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("M"));
+
     }
 
     @Test
-    void drawHoldingBlock() {
-        Position position = new Position(1, 1);
-        gui.drawHoldingBlock(position);
+    void drawHoldingBlockTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 10);
 
-        Mockito.verify(tg).setForegroundColor(TextColor.Factory.fromString("#E6E6FA"));
-        Mockito.verify(tg).putString(position.getX(), position.getY() + 3, "M");
+        // Act
+        lanternaGUI.drawHoldingBlock(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#E6E6FA"));
+        verify(mockTextGraphics).putString(eq(0), eq(14), eq("M"));
+
+    }
+
+    @Test
+    void drawEnemyTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 10);
+
+        // Act
+        lanternaGUI.drawEnemy(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#CC0000"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("E"));
+
+    }
+
+    @Test
+    void drawItem1Test() throws IOException {
+        Position position = new Position(1, 10);
+
+        // Act
+        lanternaGUI.drawItem1(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#00FF00"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("1"));
+
+    }
+    @Test
+    void drawItem2Test() throws IOException {
+        Position position = new Position(1, 10);
+
+        // Act
+        lanternaGUI.drawItem2(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#00FF00"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("2"));
+
+    }
+    @Test
+    void drawItem3Test() throws IOException{
+        Position position = new Position(1, 10);
+
+        // Act
+        lanternaGUI.drawItem3(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#00FF00"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("3"));
+
+    }
+    @Test
+    void drawWallTest() throws IOException{
+        Position position = new Position(1, 10);
+
+        // Act
+        lanternaGUI.drawWall(position);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        verify(mockTextGraphics).putString(eq(1), eq(14), eq("#"));
+
     }
 }
