@@ -14,7 +14,7 @@ class PlayerViewerTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player(10, 10);
+        player = new Player(0, 0);
         viewer = new PlayerViewer();
         gui = Mockito.mock(GUI.class);
     }
@@ -22,6 +22,12 @@ class PlayerViewerTest {
     @Test
     void drawElement() {
         viewer.draw(player, gui);
+        Mockito.verify(gui, Mockito.times(1)).drawPlayer(player.getPosition());
+    }
+    @Test
+    void drawElement2() {
+        player.switchDirection();
+        viewer.draw(player,gui);
         Mockito.verify(gui, Mockito.times(1)).drawPlayer(player.getPosition());
     }
 }
