@@ -233,4 +233,18 @@ public class PlayerControllerTest {
         }
         assertFalse(result);
     }
+    @Test
+    void isPlayerFallingRight(){
+        blocks.add(new Block(5,1));
+        player.setPosition(new Position(5,0));
+        controller.movePlayerRight();
+        assertEquals(new Position(6,9), player.getPosition());
+    }
+    @Test
+    void isPlayerFallingLeft(){
+        blocks.add(new Block(5,2));
+        player.setPosition(new Position(5,1));
+        controller.movePlayerLeft();
+        assertEquals(new Position(4,9), player.getPosition());
+    }
 }
