@@ -9,12 +9,12 @@ import bdude.model.menu.Menu;
 import bdude.states.MenuState;
 
 public class LevelController extends GameController {
-    private final PlayerController playerController;
-    private final EnemyController enemyController;
+    public PlayerController playerController;
+    public EnemyController enemyController;
 
-    private final BlockController blockController;
+    public BlockController blockController;
 
-    private final ItemController itemController;
+    public ItemController itemController;
 
     public LevelController(Level level) {
         super(level);
