@@ -24,6 +24,7 @@ A Menu - you have access to all the levels and game controls:
 These are the controls that can be accessed through the initial menu.
 
 ![controls.png](docs%2Fimg%2Fcontrols.png)
+
 Walking - The game character walks in the direction of the arrow key - left or right.
 
 Changing direction – The game character is able to change his direction – left or right.
@@ -85,90 +86,9 @@ If he wins, he comes to this menu.
 
 ## DESIGN
 
+State Pattern:
 
-
-Problem in context:
-
-
-
-Designing the game such that the edges define the playing area, and synchronizing the character's movement with the emergence of the game's scenery. The character should always be centered in the window when possible.
-
-
-
-The Pattern:
-
-
-
-We have adopted the State pattern, which serves as a guide for our program to determine the current game state and how to respond to various inputs. While we haven't completed the State implementation, we are confident that we can address the issue by integrating the state management into the level design within the game window.
-
-
-
-Implementation:
-
-
-
-The following figure shows how the pattern’s roles were mapped to the application classes.
-
-
-
-
-
-
-These classes can be found in the following files:
-
-
-
--[Application](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Application.java
-
-
-
-- [Block](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Block.java)
-
-
-
-- [Element](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Element.java)
-
-
-
-- [Enemy](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Enemy.java)
-
-
-
-- [Game](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Game.java)
-
-
-
-- [Item](ncreasedGravityState](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Item.java)
-
-
-
--[KeyStroke](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/KeyStroke.java)
-
-
-
--[Level](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Level.java)
-
-
-
--[Player](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Player.java)
-
-
-
--[Position](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Position.java)
-
-
-
--[Wall](https://github.com/FEUP-LDTS-2023/project-l08gr08/blob/master/src/main/java/Wall.java)
-
-
-
-
-
-Consequences:
-
-
-
-The use of the State Pattern in the current design allows the following benefits:
+In the current design allows the following benefits:
 
 
 
@@ -178,42 +98,136 @@ The use of the State Pattern in the current design allows the following benefits
 
 - State Transitions: State variables define the allowed transitions between states. They determine when and how the system or object can change from one state to another. Transitions may be triggered by specific events, conditions, or actions. (ex: levels, menu, options).
 
+Factory Method Pattern:
 
+In the current design, the Factory Method pattern offers several advantages:
 
-## KNOWN CODE SMELLS
+- Flexibility and Extensibility:
+By employing a Factory Method, even implicitly, the design gains the flexibility to alter the types of objects created without necessitating changes to its core logic. This enhances extensibility and simplifies maintenance.
 
-
-
-> The movement of the player is not completely defined yet, it only changes its position ignoring the existence of blocks. We don’t have functions that check if the movement is valid and we still need to create functions for picking up a Block, activating the Power or breaking a Block for example;
-
-
-
-> The class Level, should be an Abstract Class, and the creation of Level1 -> Level5 should extend that Class, reading different files;
-
-
-
-> The Drawings of the Elements of the game should be squares instead of rectangles and should show a texture instead of just a Character with a background color (example ‘>’ should show us a pixel art of the block-dude). The background of each level should also show us an image of a pixel art;
+- Code Reusability:
+The Factory Method pattern fosters code reusability. If the logic for object creation is required elsewhere in the application, it can be easily reused without duplicating code.
 
 
 
+## CODE SMELLS
+
+>One of the problems we've spotted is that when we provide levels with resolutions larger than what we initially set, like the assumed 13x44, it affects the level drawing. In simpler terms, the drawing gets compromised because we didn't consider where to draw things when adjusting the level to fit the screen size.
+
+>Lack of comments: it might be challenging for someone else to understand the purpose and functionality of various parts of the code.
+
+>Long Methods: We have some methods that are a bit lengthy, which compromises readability.
+
+## TEST COVERAGE
+![Captura de ecrã de 2023-12-21 22-06-13.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-06-13.png)
 
 
-## TESTING
+![Captura de ecrã de 2023-12-21 22-06-35.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-06-35.png)
 
 
+![Captura de ecrã de 2023-12-21 22-07-01.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-07-01.png)
 
-https://github.com/FEUP-LDTS-2023/project-l08gr08/tree/master/src/test/java
+
+![Captura de ecrã de 2023-12-21 22-07-16.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-07-16.png)
 
 
-![tests.png](docs%2Fimg%2Ftests.png)
+![Captura de ecrã de 2023-12-21 22-07-40.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-07-40.png)
 
+
+![Captura de ecrã de 2023-12-21 22-21-22.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-21-22.png)
+
+
+## PITEST REPORT
+-MUTATORS
+org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
+> Generated 50 Killed 13 (26%)
+KILLED 13 SURVIVED 1 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 36
+
+org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator
+> Generated 18 Killed 9 (50%)
+KILLED 9 SURVIVED 3 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 6
+
+org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator
+> Generated 1 Killed 0 (0%)
+KILLED 0 SURVIVED 0 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 1
+
+org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator
+> Generated 250 Killed 62 (25%)
+KILLED 62 SURVIVED 19 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 169
+
+org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator
+> Generated 27 Killed 9 (33%)
+KILLED 8 SURVIVED 4 TIMED_OUT 1 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 14
+
+org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator
+> Generated 40 Killed 10 (25%)
+KILLED 10 SURVIVED 9 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 21
+
+org.pitest.mutationtest.engine.gregor.mutators.MathMutator
+> Generated 64 Killed 33 (52%)
+KILLED 32 SURVIVED 2 TIMED_OUT 1 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 29
+
+org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator
+> Generated 13 Killed 4 (31%)
+KILLED 4 SURVIVED 5 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 4
+
+org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator
+> Generated 20 Killed 8 (40%)
+KILLED 8 SURVIVED 0 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 12
+
+org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
+> Generated 187 Killed 57 (30%)
+KILLED 57 SURVIVED 28 TIMED_OUT 0 NON_VIABLE 0
+MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0
+NO_COVERAGE 102
+
+
+-TIMINGS
+
+>pre-scan for mutations : < 1 second
+
+>scan classpath : < 1 second
+
+>coverage and dependency analysis : 1 second
+
+>build mutation tests : < 1 second
+
+>run mutation analysis : 34 seconds
+
+>Total  : 35 seconds
+
+
+-STATISTICS
+>Line Coverage (for mutated classes only): 458/864 (53%)
+
+>Generated 670 mutations Killed 205 (31%)
+
+>Mutations with no coverage 394. Test strength 74%
+
+>Ran 456 tests (0.68 tests per mutation)
 
 ## SELF-EVALUATION
+- Eduardo - 45%
 
+- Frederica - 10%
 
+- Gonçalo - 45%
 
-While we were together, we jointly arrived at the game concept and discussed various implementation hypotheses for the game. Subsequently, we each completed different parts of the work. Frederica was responsible for creating the text, while Gonçalo and Eduardo were in charge of completing the application and testing, respectively.
-
-
-
-We all contrbuted equally to the submission of the project.  
