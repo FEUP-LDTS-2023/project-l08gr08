@@ -11,9 +11,7 @@ import bdude.states.MenuState;
 public class LevelController extends GameController {
     private final PlayerController playerController;
     private final EnemyController enemyController;
-
     private final BlockController blockController;
-
     private final ItemController itemController;
 
     public LevelController(Level level) {
