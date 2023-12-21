@@ -11,11 +11,11 @@ public class ControlsState extends State<Controls>{
         super(model);
     }
     @Override
-    protected Viewer<Controls> getViewer() {
+    public Viewer<Controls> getViewer() {
         return new ControlsViewer(getModel());
     }
     @Override
-    protected Controller<Controls> getController() {
+    public Controller<Controls> getController() {
         return new ControlsController(getModel());
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Menu {
     private final List<String> entries;
-    private int currentEntry = 0;
+    public int currentEntry = 0;
     public Menu() {
         this.entries = Arrays.asList(" LEVEL - 1", " LEVEL - 2", " LEVEL - 3", " CONTROLS", "   EXIT");
     }

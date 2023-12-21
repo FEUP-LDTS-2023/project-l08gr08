@@ -1,16 +1,16 @@
 plugins {
     id 'java'
-    id 'info.solidsoft.pitest' version '1.6.0'
+    id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 group = 'bdude'
-version = '1.0-SNAPSHOT'
+version = '1.0'
 
 repositories {
     mavenCentral()
 }
 pitest {
-    junit5PluginVersion = '0.12'
+    junit5PluginVersion = '1.1.2'
 }
 
 dependencies {

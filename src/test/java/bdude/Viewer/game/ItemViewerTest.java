@@ -1,4 +1,4 @@
-package bdude.Viewer;
+package bdude.Viewer.game;
 
 import bdude.gui.GUI;
 import bdude.model.game.elements.Item;

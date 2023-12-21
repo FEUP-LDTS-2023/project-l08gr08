@@ -1,4 +1,4 @@
-package bdude.Controller;
+package bdude.Controller.game;
 
 import bdude.controller.game.PlayerController;
 import bdude.model.Position;

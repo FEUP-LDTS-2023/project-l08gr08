@@ -1,4 +1,4 @@
-package bdude.Model;
+package bdude.Model.game.elements;
 
 import bdude.model.game.elements.Enemy;
 import org.junit.jupiter.api.Assertions;
