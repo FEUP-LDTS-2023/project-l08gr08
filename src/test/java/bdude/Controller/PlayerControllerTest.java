@@ -194,4 +194,43 @@ public class PlayerControllerTest {
         }
         assertTrue(result);
     }
+    @Test
+    void breakBlockRight() {
+        Block newBlock = new Block(6,9);
+        blocks.add(newBlock);
+
+        player.power(true);
+        player.setPowerActive();
+
+        controller.breakBlock(newBlock.getPosition());
+
+        assertFalse(player.getPower());
+        assertFalse(player.getPowerActive());
+
+        boolean result = true;
+        for(int i = 0; i < blocks.size(); i++){
+           if(blocks.get(i).getPosition().equals(newBlock.getPosition())) result = false;
+        }
+        assertFalse(result);
+    }
+    @Test
+    void breakBlockLeft() {
+        Block newBlock = new Block(4,9);
+        blocks.add(newBlock);
+
+        player.switchDirection();
+        player.power(true);
+        player.setPowerActive();
+
+        controller.breakBlock(newBlock.getPosition());
+
+        assertFalse(player.getPower());
+        assertFalse(player.getPowerActive());
+
+        boolean result = true;
+        for(int i = 0; i < blocks.size(); i++){
+            if(blocks.get(i).getPosition().equals(newBlock.getPosition())) result = false;
+        }
+        assertFalse(result);
+    }
 }
