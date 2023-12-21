@@ -11,37 +11,75 @@ This project was developed by Frederica Pereira (202108167@fe.up.pt),  Eduardo C
 ## UML
 
 ![blockdude_uml.png](docs%2Fblockdude_uml.png)
+## PLAYING THE GAME
 
+A short gameplay demonstrating all the features:
+
+![video.gif](docs%2Fimg%2Fvideo.gif)
 ## IMPLEMENTED FEATURES
+A Menu - you have access to all the levels and game controls:
 
-![gameRun.png](docs%2Fimg%2FgameRun.png)
+![gameRun.png](docs%2Fimg%2FmenuInicial.png)
 
+These are the controls that can be accessed through the initial menu.
 
-
+![controls.png](docs%2Fimg%2Fcontrols.png)
 Walking - The game character walks in the direction of the arrow key - left or right.
 
 Changing direction – The game character is able to change his direction – left or right.
 
 Reading Text Files to create levels – the reading of files was done successfully.
 
+Level 1:
 
+![nivel1.png](docs%2Fimg%2Fnivel1.png)
 
- ## PLANNED FEATURES
-![MenuAndGame.jpeg](docs%2Fimg%2FMenuAndGame.jpeg)
-![level1.jpeg](docs%2Fimg%2Flevel1.jpeg)
+![level1.png](docs%2Fimg%2Flevel1.png)
 
+Level 2:
+
+![nivel2.png](docs%2Fimg%2Fnivel2.png)
+
+![level2.png](docs%2Fimg%2Flevel2.png)
+
+Level 3:
+
+![nivel3.png](docs%2Fimg%2Fnivel3.png)
+
+![level3.png](docs%2Fimg%2Flevel3.png)
 
 Picking up a block - The game character will pick up a block when the “down” arrow key is pressed.
-
 Dropping a block - The game character will drop a block when the “down” arrow key is pressed.
+
+
+![holdingBlock.png](docs%2Fimg%2FholdingBlock.png)
 
 Enemies - different non playable characters that provide some adversity to the player.
 
+![enemy.png](docs%2Fimg%2Fenemy.png)
+
 Using a power – the player is able to use a power that will let him break a Block in front of him.
 
-Changing Textures – the user is able to change the appearence of the videogame including the characters that he uses;
+![powerON.png](docs%2Fimg%2FpowerON.png)
 
 
+Stage - Initially, the player is on stage 1. As they collect items, they can activate the power, and the stage increases by 1.
+Note that in the following image, the player picked up two items, so he is now on stage 3.
+
+![stage3.png](docs%2Fimg%2Fstage3.png)
+
+Lives - the player has 3 lives per game. If he presses reset ("R"), one life will be deducted. The same happens if he is killed by an enemy.
+In the following image, the player has only one life.
+
+![lives.png](docs%2Fimg%2Flives.png)
+
+If he loses, he comes to this menu.
+
+![lose.png](docs%2Fimg%2Flose.png)
+
+If he wins, he comes to this menu.
+
+![win.png](docs%2Fimg%2Fwin.png)
 
 
 
