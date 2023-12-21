@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Controls {
     private final List<String> entries;
-    private int currentEntry = 9;
+    public int currentEntry = 9;
     public Controls() {
         this.entries = Arrays.asList(
                 "ARROW LEFT -> MOVE TO THE LEFT",

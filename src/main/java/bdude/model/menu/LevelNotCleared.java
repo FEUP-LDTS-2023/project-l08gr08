@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LevelNotCleared {
     private final List<String> entries;
-    private int currentEntry = 0;
+    public int currentEntry = 0;
     private int inp = 0;
 
     public LevelNotCleared(int inp) {

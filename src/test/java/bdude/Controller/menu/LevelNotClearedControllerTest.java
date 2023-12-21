@@ -4,7 +4,6 @@ import bdude.Game;
 import bdude.controller.menu.LevelNotClearedController;
 import bdude.gui.GUI;
 import bdude.model.menu.LevelNotCleared;
-import bdude.states.GameState;
 import bdude.states.MenuState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
