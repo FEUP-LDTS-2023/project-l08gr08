@@ -11,6 +11,8 @@ This project was developed by Frederica Pereira (202108167@fe.up.pt),  Eduardo C
 ## UML
 
 ![blockdude_uml.png](docs%2Fblockdude_uml.png)
+
+![Captura de ecrã de 2023-12-22 19-19-18.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-22%2019-19-18.png)
 ## PLAYING THE GAME
 
 A short gameplay demonstrating all the features:
@@ -119,22 +121,8 @@ The Factory Method pattern fosters code reusability. If the logic for object cre
 >Long Methods: We have some methods that are a bit lengthy, which compromises readability.
 
 ## TEST COVERAGE
-![Captura de ecrã de 2023-12-21 22-06-13.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-06-13.png)
 
-
-![Captura de ecrã de 2023-12-21 22-06-35.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-06-35.png)
-
-
-![Captura de ecrã de 2023-12-21 22-07-01.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-07-01.png)
-
-
-![Captura de ecrã de 2023-12-21 22-07-16.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-07-16.png)
-
-
-![Captura de ecrã de 2023-12-21 22-07-40.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-07-40.png)
-
-
-![Captura de ecrã de 2023-12-21 22-21-22.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-21%2022-21-22.png)
+![Captura de ecrã de 2023-12-22 19-27-35.png](docs%2Fimg%2FCaptura%20de%20ecr%C3%A3%20de%202023-12-22%2019-27-35.png)
 
 
 ## PITEST REPORT
@@ -216,9 +204,9 @@ NO_COVERAGE 102
 
 
 -STATISTICS
->Line Coverage (for mutated classes only): 458/864 (53%)
+>Line Coverage (for mutated classes only): 464/864 (54%)
 
->Generated 670 mutations Killed 205 (31%)
+>Generated 670 mutations Killed 206 (31%)
 
 >Mutations with no coverage 394. Test strength 74%
 
