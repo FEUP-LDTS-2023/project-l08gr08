@@ -225,9 +225,9 @@ NO_COVERAGE 102
 >Ran 456 tests (0.68 tests per mutation)
 
 ## SELF-EVALUATION
-- Eduardo - 45%
+- Eduardo - 40%
 
-- Frederica - 10%
+- Frederica - 20%
 
-- Gonçalo - 45%
+- Gonçalo - 40%
 

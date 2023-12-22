@@ -193,4 +193,31 @@ class LanternaGUITest {
         verify(mockTextGraphics).putString(eq(1), eq(14), eq("#"));
 
     }
+
+    @Test
+    void drawTextTest() throws IOException {
+        // Arrange
+        Position position = new Position(1, 4);
+        String text = "Hello, Bdude!";
+        String color = "#FFFFFF";
+
+        // Act
+        lanternaGUI.drawText(position, text, color);
+
+        // Assert
+        verify(mockTextGraphics).setForegroundColor(TextColor.Factory.fromString(color));
+        verify(mockTextGraphics).putString(eq(1), eq(4), eq(text));
+    }
+
+    @Test
+    void refreshTest() throws IOException {
+        // Arrange
+        lanternaGUI.drawText(new Position(1, 4), "Hello, Bdude!", "#FFFFFF");
+
+        // Act
+        lanternaGUI.refresh();
+
+        // Assert
+        verify(mockScreen).refresh();
+    }
 }
